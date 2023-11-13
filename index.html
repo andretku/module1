@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="preload" href="./fonts/TTLakes-Regular.woff" as="font" type="font/woff">
-    <link rel="preload" href="./fonts/TTLakes-Bold.woff" as="font" type="font/woff">
-    <link rel="preload" href="./fonts/TTLakes-Medium.woff" as="font" type="font/woff">
+    <link href="./fonts/TTLakes-Regular.woff" as="font" type="font/woff">
+    <link href="./fonts/TTLakes-Bold.woff" as="font" type="font/woff">
+    <link href="./fonts/TTLakes-Medium.woff" as="font" type="font/woff">
     <link rel="icon" href="./img/favicon.png" type=”image/svg+xml”>
     <title>CPS - Module 1</title>
+    <script src="scripts/script.js" defer></script>
 </head>
 
 <body>
@@ -31,9 +32,75 @@
     </header>
 
     <main class="main">
+        <div class="main__leftbutton" onclick="leftMenu()">
+            <svg viewBox="0 0 1024 1024" version="1.1">
+                <path d="M256 102.4v819.2l512-409.6L256 102.4z" />
+            </svg>
+        </div>
+        <section id="menu" class="main__aside">
+            <div>
+                <div class="main__aside-header">
+                    <img src="img/burgerX.svg" alt="Burger menu">
+                    <div>
+                        <img class="main__img_group" src="img/group.svg" alt="CPS-Group">
+                    </div>
+                    <img class="main__img_search" src="img/search.svg" alt="Search">
+                </div>
+                <ul class="main__aside-menu">
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Ремонт техники</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Услуги и сервисы</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Корпоративным клиентам</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Продавцам техники</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Партнерам</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Производителям</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Наши сервисные центры</a>
+                    </li>
+                    <li>
+                        <img src="img/highlight.svg" alt="highlight">
+                        <a>Контакты</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="main__aside-footer">
+                    <img src="img/call.svg" alt="Call">
+                    <img src="img/chat.svg" alt="Chat">
+                    <img src="img/profile.svg" alt="Profile">
+                </div>
+                <p class="main__aside-mail"><a href="mailto:mail@cps.com">mail@cps.com</a></p>
+                <p class="main__aside-phone"><a href="tel:8-800-890-8900">8 800 890 8900</a></p>
+                <ul class="main__aside-lang">
+                    <li><a href="#">RU</a></li>
+                    <li><a href="#">EN</a></li>
+                    <li><a href="#">CH</a></li>
+                </ul>
+            </div>
+        </section>
+
+
         <div class="main__header">
             <div class="main__title">
-                <svg xmlns="http://www.w3.org/2000/svg" width="4" height="40" viewBox="0 0 4 40" fill="none">
+                <svg width="4" height="40" viewBox="0 0 4 40" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M4 4C4 1.79086 2.20914 0 0 0V40C2.20914 40 4 38.2091 4 36V4Z" fill="#41F6D7" />
                 </svg>
