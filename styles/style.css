@@ -1,11 +1,13 @@
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-*, *:before, *:after {
-	box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
 }
 
 @font-face {
@@ -14,22 +16,22 @@ html {
 }
 
 @font-face {
-    font-family: TTLakesMedium;
+    font-family: TTLakes500;
     src: url(../fonts/TTLakes-Medium.woff);
 }
 
 @font-face {
-    font-family: TTLakesBold;
+    font-family: TTLakes700;
     src: url(../fonts/TTLakes-Bold.woff);
 }
 
 :root {
     --color-bg-main: #F8F8F8;
+    --color-bg-aside: #FFFFFF;
     --color-bg-header: #FFFFFF;
     --color-icon-main: #FF3E79;
     --color-font: #1B1C21;
     --color-menu-font: #7E7E82;
-    ;
     --color-menu-start: #41F6D7;
     --color-menu-border: #B8FFEC;
     --color-header-border: #D9FFF5;
@@ -40,12 +42,22 @@ body {
     font-family: TTLakes, Arial, sans-serif;
     font-style: normal;
     font-size: 14px;
-
+    color: var(--color-font);
 }
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+a:hover {
+    cursor: pointer;
+    color: var(--color-menu-font);
+    transition: 0.3s;
+}
+
+a:active {
+    color: var(--color-menu-font);
 }
 
 /* -------------------------------------- */
@@ -96,13 +108,131 @@ a {
     display: none;
 }
 
-/* --------------------------------------- */
+/* -------------- aside -------------------- */
 
 .main {
     background-color: var(--color-bg-main);
     padding-top: 24px;
     min-height: 100vh;
+    position: relative;
 }
+
+.main__leftbutton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 100vh;
+    background: var(--color-bg-aside);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.main__leftbutton:hover {
+    background-color: rgba(14, 24, 80, 0.10);
+    box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.10);
+    transition: 0.3s;
+}
+
+.main__leftbutton:hover svg {
+    fill: var(--color-menu-font);
+    transition: 0.2s;
+}
+
+.main__aside {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100vh;
+    background: var(--color-bg-aside);
+    padding: 18px 24px 32px;
+    box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.20), -2px 0px 4px 0px rgba(69, 79, 126, 0.02);
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-between;
+    display: none;
+}
+
+.main__aside-header,
+.main__aside-footer {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+}
+
+.main__aside-header>img:hover,
+.main__aside-footer>img:hover {
+    cursor: pointer;
+    filter: brightness(150%) opacity(80%);
+    transition: all 0.2s ease-in;
+}
+
+.main__img_search {
+    margin-left: auto;
+}
+
+.main__aside-menu {
+    font-family: TTLakes500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    padding: 50px 0;
+    list-style-type: none;
+}
+
+.main__aside-menu li:not(:last-child) {
+    margin-bottom: 24px;
+}
+
+.main__aside-menu li {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 0 -24px 0 -24px;
+}
+
+.main__aside-menu li:hover {
+    cursor: pointer;
+    color: var(--color-menu-font);
+    /* background-color: var(--color-bg-main); */
+    transition: 0.3s;
+}
+
+.main__aside-menu li img {
+    opacity: 0;
+}
+
+.main__aside-menu li:hover img {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.main__aside-mail {
+    margin: 16px 0 12px;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.main__aside-phone {
+    font-family: TTLakes700;
+    font-size: 24px;
+    letter-spacing: -0.6px;
+}
+
+.main__aside-lang {
+    list-style-type: none;
+    display: flex;
+    gap: 8px;
+    margin-top: 40px;
+    font-size: 16px;
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+}
+
+/* ------------------------------------------ */
 
 .main__header {
     display: flex;
@@ -116,7 +246,7 @@ a {
 }
 
 .main__h1 {
-    font-family: TTLakesBold;
+    font-family: TTLakes700;
     font-size: 28px;
     line-height: 1.43;
     letter-spacing: -0.6px;
@@ -144,7 +274,7 @@ a {
 
 .navbar__item {
     display: block;
-    font-family: TTLakesMedium;
+    font-family: TTLakes500;
     color: var(--color-menu-font);
     font-size: 16px;
     line-height: 1.5;
@@ -168,7 +298,6 @@ a.navbar__item:visited {
 
 .main__repair-brands {
     padding: 0 16px;
-    color: var(--color-font);
 }
 
 .main__repair-brands-text {
@@ -183,7 +312,7 @@ a.navbar__item:visited {
 .main__read-more {
     display: flex;
     align-items: center;
-    font-family: TTLakesMedium;
+    font-family: TTLakes500;
     padding: 16px 0;
 }
 
@@ -286,8 +415,7 @@ a.navbar__item:visited {
     .main__righticons {
         display: flex;
         align-items: center;
-        color: var(--color-font);
-        font-family: TTLakesMedium;
+        font-family: TTLakes500;
         font-size: 16px;
         gap: 8px;
     }
