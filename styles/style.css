@@ -40,6 +40,7 @@ html {
 
 body {
     min-width: 320px;
+    max-width: 100vw;
     font-family: TTLakes, Arial, sans-serif;
     font-style: normal;
     font-size: 14px;
@@ -160,7 +161,7 @@ a:active {
     flex-direction: column;
     justify-content: space-between;
     display: none;
-    z-index: 1;
+    z-index: 11;
 }
 
 .main__aside-header,
