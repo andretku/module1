@@ -35,6 +35,7 @@ html {
     --color-menu-start: #41F6D7;
     --color-menu-border: #B8FFEC;
     --color-header-border: #D9FFF5;
+    --color-brand-border: #EAEAEA;
 }
 
 body {
@@ -108,13 +109,17 @@ a:active {
     display: none;
 }
 
-/* -------------- aside -------------------- */
+/* --------------------------------------- */
 
 .main {
     background-color: var(--color-bg-main);
-    padding-top: 24px;
+    padding: 24px 16px;
     min-height: 100vh;
     position: relative;
+}
+
+.container {
+    width: 100%;
 }
 
 .main__leftbutton {
@@ -140,11 +145,13 @@ a:active {
     transition: 0.2s;
 }
 
+/* -------------- aside -------------------- */
+
 .main__aside {
     position: fixed;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 270px;
     height: 100vh;
     background: var(--color-bg-aside);
     padding: 18px 24px 32px;
@@ -153,6 +160,7 @@ a:active {
     flex-direction: column;
     justify-content: space-between;
     display: none;
+    z-index: 1;
 }
 
 .main__aside-header,
@@ -197,7 +205,6 @@ a:active {
 .main__aside-menu li:hover {
     cursor: pointer;
     color: var(--color-menu-font);
-    /* background-color: var(--color-bg-main); */
     transition: 0.3s;
 }
 
@@ -237,7 +244,6 @@ a:active {
 .main__header {
     display: flex;
     justify-content: space-between;
-    padding-right: 32px;
 }
 
 .main__title {
@@ -254,10 +260,9 @@ a:active {
 
 .main__rightmenu_disabled {
     display: none;
-
 }
 
-/* ------------------------------------- */
+/* ------------- Navbar ------------------------ */
 
 .navbar {
     display: flex;
@@ -296,46 +301,127 @@ a.navbar__item:visited {
 
 /* -------------------------------- */
 
-.main__repair-brands {
+.main__content {
+    display: flex;
+    flex-direction: column;
     padding: 0 16px;
 }
 
-.main__repair-brands-text {
-    height: 90px;
-    overflow: hidden;
-}
-
-.main__repair-brands-text>p:not(:first-child) {
+.main__text>p:not(:first-child) {
     padding-top: 24px;
 }
 
-.main__read-more {
+.main__text_hidden {
+    height: 80px;
+    overflow-y: hidden;
+}
+
+.main__content>img {
+    width: 320px;
+    object-fit: contain;
+    align-self: center;
+    padding-top: 10px;
+}
+
+/* ---------------- Brands ---------------------- */
+
+.main__brands {
+    padding: 32px;
+}
+
+.main__brands-title {
+    font-family: TTLakes;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: -0.2px;
+    color: var(--color-menu-font);
+    padding-bottom: 32px;
+}
+
+.main__brands-container {
+    display: flex;
+    gap: 16px;
+    padding-top: 32px;
+    overflow: hidden;
+}
+
+.main__brands-content {
+    display: flex;
+    width: 240px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid var(--color-brand-border);
+    background: var(--color-bg-header);
+    padding-left: 16px;
+}
+
+.main__brands-icon {
+    margin: 16px;
+    cursor: pointer;
+    height: 40px;
+}
+
+#brandsMain {
+    display: none;
+}
+
+/* -------- button ------------------------ */
+
+.showHideButton {
     display: flex;
     align-items: center;
+    gap: 8px;
+    border: none;
+    color: var(--color-font);
     font-family: TTLakes500;
-    padding: 16px 0;
-}
-
-.main__read-more>img {
+    font-size: 16px;
+    letter-spacing: -0.2px;
     cursor: pointer;
+    background-color: inherit;
+    margin-top: 24px;
 }
 
-.main__read-more>p {
-    padding-left: 8px;
-    cursor: pointer;
+.showHideButton:hover {
+    color: var(--color-menu-font);
+    transition: 0.3s;
 }
 
-.main__read-more>p:hover {
-    font-weight: bold;
+.showHideButton_rotate {
+    transform: rotate(180deg);
 }
 
-.main__image>img {
+
+/* -------- Slider ------------- */
+
+.swiper {
     width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    border: 1px solid var(--color-brand-border);
+    background: var(--color-bg-header);
+    padding-left: 16px;
+    min-width: 200px;
 }
 
 /* ======================================= */
 
 @media screen and (min-width: 768px) {
+
+    .main__aside {
+        width: 270px;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
 
     .header {
         padding: 0 24px;
@@ -365,31 +451,66 @@ a.navbar__item:visited {
 
     /* --------------------------- */
 
-    .main__repair-brands {
+    .main__content {
         display: flex;
+        flex-direction: row;
         padding: 0 24px;
-    }
-
-    .main__repair-brands>div {
-        width: 50%;
     }
 
     .main__text {
         padding-right: 48px;
     }
 
-    .main__repair-brands-text {
-        height: 160px;
+    .main__content>img {
+        width: 50%;
+        object-fit: contain;
+        align-self: flex-start;
+        padding-top: 0;
     }
 
-    .main__read-more {
-        padding: 10px 0;
+    /* --------------------------- */
+
+    #brandsMain {
+        display: block;
+    }
+
+    #brandsMainMobile {
+        display: none;
+    }
+
+    .main__brands {
+        padding: 24px 16px;
+    }
+
+    .main__brands_hidden {
+        height: 190px;
+        overflow-y: hidden;
+    }
+
+    .main__brands-title {
+        padding: 8px 0;
+    }
+
+    .main__brands-container {
+        padding-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(200px, 240px));
+        gap: 16px 24px;
+        justify-content: center;
+    }
+
+    .main__brands-content {
+        width: auto;
     }
 }
 
 /* ============================================= */
 
 @media screen and (min-width: 1120px) {
+
+    .container {
+        width: 1100px;
+    }
 
     .header {
         display: none;
@@ -425,8 +546,20 @@ a.navbar__item:visited {
         font-weight: bolder;
     }
 
-    .main__repair-brands {
+    .main__content {
         padding: 0 34px;
+    }
+
+    /* --------------------- */
+
+    .main__brands {
+        padding: 0 32px 34px;
+    }
+
+    .main__brands-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px 32px;
     }
 
 }

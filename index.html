@@ -6,10 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="./fonts/TTLakes-Regular.woff" as="font" type="font/woff">
     <link href="./fonts/TTLakes-Bold.woff" as="font" type="font/woff">
     <link href="./fonts/TTLakes-Medium.woff" as="font" type="font/woff">
-    <link rel="icon" href="./img/favicon.png" type=”image/svg+xml”>
+    <link rel="icon" href="./img/favicon.png" type="image/svg+xml">
     <title>CPS - Module 1</title>
     <script src="scripts/script.js" defer></script>
 </head>
@@ -31,7 +32,7 @@
         </div>
     </header>
 
-    <main class="main">
+    <main class="main container">
         <div class="main__leftbutton" onclick="leftMenu()">
             <svg viewBox="0 0 1024 1024" version="1.1">
                 <path d="M256 102.4v819.2l512-409.6L256 102.4z" />
@@ -153,9 +154,9 @@
             </ul>
         </nav>
 
-        <article class="main__repair-brands">
-            <div class="main__text">
-                <div class="main__repair-brands-text">
+        <article class="main__content">
+            <div id="readMain">
+                <div id="readContainer" class="main__text main__text_hidden">
                     <p>
                         Мы являемся авторизованным сервисным центром по ремонту техники Dell. Только у нас вы можете
                         отремонтировать свой ноутбук Dell с официальной гарантией производителя.
@@ -166,16 +167,28 @@
                         и, в свою очередь, советуют нас родным и близким.
                     </p>
                 </div>
-                <div class="main__read-more">
-                    <img src="img/expand.svg" alt="Next">
-                    <p>Читать далее</p>
-                </div>
             </div>
-
-            <div class="main__image">
-                <img src="img/CPS-main.jpg" alt="CPS board">
-            </div>
+            <img src="img/CPS-main.jpg" alt="CPS board">
         </article>
+
+
+        <section id="brandsMain" class="main__brands">
+            <p class="main__brands-title">
+                Ремонт техники различных брендов</p>
+            <div id="brandsContainer" class="main__brands-container main__brands_hidden"></div>
+        </section>
+
+        <!-- Slider container mobile max768 -->
+        <section id="brandsMainMobile" class="main__brands">
+            <p class="main__brands-title">
+                Ремонт техники различных брендов</p>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination" style="position: relative; bottom: -5px;"></div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        </section>
+
     </main>
 </body>
 
