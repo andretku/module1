@@ -1,0 +1,14 @@
+@font-face {
+    font-family: TTLakes;
+    src: url(../fonts/TTLakes-Regular.woff) format('truetype');
+}
+
+@font-face {
+    font-family: TTLakes500;
+    src: url(../fonts/TTLakes-Medium.woff) format('truetype');
+}
+
+@font-face {
+    font-family: TTLakes700;
+    src: url(../fonts/TTLakes-Bold.woff) format('truetype');
+}

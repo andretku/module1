@@ -1,3 +1,6 @@
+@import 'TTLakes.css';
+@import '~normalize.css';
+
 html {
     box-sizing: border-box;
 }
@@ -8,21 +11,6 @@ html {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
-}
-
-@font-face {
-    font-family: TTLakes;
-    src: url(../fonts/TTLakes-Regular.woff);
-}
-
-@font-face {
-    font-family: TTLakes500;
-    src: url(../fonts/TTLakes-Medium.woff);
-}
-
-@font-face {
-    font-family: TTLakes700;
-    src: url(../fonts/TTLakes-Bold.woff);
 }
 
 :root {

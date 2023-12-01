@@ -5,35 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="./fonts/TTLakes-Regular.woff" as="font" type="font/woff">
-    <link href="./fonts/TTLakes-Bold.woff" as="font" type="font/woff">
-    <link href="./fonts/TTLakes-Medium.woff" as="font" type="font/woff">
-    <link rel="icon" href="./img/favicon.png" type="image/svg+xml">
+    <link rel="icon" href="/src/favicon.png" type="image/svg">
     <title>CPS - Module 1</title>
-    <script src="scripts/script.js" defer></script>
 </head>
 
 <body>
     <header class="header">
         <div class="header__leftmenu">
-            <img src="img/burger.svg" alt="Burger menu">
+            <img src="./assets/img/burger.svg" alt="Burger menu">
             <div class="header__divider"></div>
-            <img src="img/group.svg" alt="CPS-Group">
+            <img src="./assets/img/group.svg" alt="CPS-Group">
         </div>
         <div class="header__rightmenu">
-            <img src="img/call.svg" alt="Call" class="header__img_disabled">
-            <img src="img/chat.svg" alt="Chat" class="header__img_disabled">
-            <img src="img/profile.svg" alt="Profile" class="header__img_disabled">
+            <img src="./assets/img/call.svg" alt="Call" class="header__img_disabled">
+            <img src="./assets/img/chat.svg" alt="Chat" class="header__img_disabled">
+            <img src="./assets/img/profile.svg" alt="Profile" class="header__img_disabled">
             <div class="header__divider"></div>
-            <img src="img/repair.svg" alt="Repair">
-            <img src="img/checkstatus.svg" alt="Check status">
+            <img src="./assets/img/repair.svg" alt="Repair">
+            <img src="./assets/img/checkstatus.svg" alt="Check status">
         </div>
     </header>
 
     <main class="main container">
-        <div class="main__leftbutton" onclick="leftMenu()">
+        <div id="menuContainer" class="main__leftbutton">
             <svg viewBox="0 0 1024 1024" version="1.1">
                 <path d="M256 102.4v819.2l512-409.6L256 102.4z" />
             </svg>
@@ -41,52 +36,52 @@
         <section id="menu" class="main__aside">
             <div>
                 <div class="main__aside-header">
-                    <img src="img/burgerX.svg" alt="Burger menu">
+                    <img src="./assets/img/burgerX.svg" alt="Burger menu">
                     <div>
-                        <img class="main__img_group" src="img/group.svg" alt="CPS-Group">
+                        <img class="main__img_group" src="./assets/img/group.svg" alt="CPS-Group">
                     </div>
-                    <img class="main__img_search" src="img/search.svg" alt="Search">
+                    <img class="main__img_search" src="./assets/img/search.svg" alt="Search">
                 </div>
                 <ul class="main__aside-menu">
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Ремонт техники</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Услуги и сервисы</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Корпоративным клиентам</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Продавцам техники</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Партнерам</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Производителям</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Наши сервисные центры</a>
                     </li>
                     <li>
-                        <img src="img/highlight.svg" alt="highlight">
+                        <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Контакты</a>
                     </li>
                 </ul>
             </div>
             <div>
                 <div class="main__aside-footer">
-                    <img src="img/call.svg" alt="Call">
-                    <img src="img/chat.svg" alt="Chat">
-                    <img src="img/profile.svg" alt="Profile">
+                    <img src="./assets/img/call.svg" alt="Call">
+                    <img src="./assets/img/chat.svg" alt="Chat">
+                    <img src="./assets/img/profile.svg" alt="Profile">
                 </div>
                 <p class="main__aside-mail"><a href="mailto:mail@cps.com">mail@cps.com</a></p>
                 <p class="main__aside-phone"><a href="tel:8-800-890-8900">8 800 890 8900</a></p>
@@ -110,11 +105,11 @@
             <div class="main__rightmenu_disabled">
                 <div class="main__righticons">
                     <p>Оставить заявку</p>
-                    <img src="img/repair.svg" alt="Repair">
+                    <img src="./assets/img/repair.svg" alt="Repair">
                 </div>
                 <div class="main__righticons">
                     <p>Статус ремонта</p>
-                    <img src="img/checkstatus.svg" alt="Check status">
+                    <img src="./assets/img/checkstatus.svg" alt="Check status">
                 </div>
             </div>
         </div>
@@ -168,7 +163,7 @@
                     </p>
                 </div>
             </div>
-            <img src="img/CPS-main.jpg" alt="CPS board">
+            <img src="./assets/img/CPS-main.jpg" alt="CPS board">
         </article>
 
 
