@@ -1,60 +1,94 @@
 const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
+const HTMLWebpackPlugin = require('html-webpack-plugin')                                //+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserWebpackPlugin = require('terser-webpack-plugin')
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')                                //+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')                         //+
+const TerserWebpackPlugin = require('terser-webpack-plugin')                            //+
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')               //+
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");                 //+
 
-const isDev = process.env.NODE_ENV === 'development' // проверка, в каком режиме мы находимся: разработки или продакшена. И в зависимости от этого разрешаем в коде ниже некоторые параметры
+const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
+const filename = (ext) => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 
-// функция оптимизации кода для продакшена
+
 const optimization = () => {
     const config = {
         splitChunks: {
             chunks: 'all'
         }
     }
-
     if (isProd) {
         config.minimizer = [
             new TerserWebpackPlugin(),
-            new CssMinimizerWebpackPlugin()
+            new CssMinimizerWebpackPlugin(),
+            new ImageMinimizerPlugin({
+                minimizer: {
+                    implementation: ImageMinimizerPlugin.imageminMinify,
+                    options: {
+                        plugins: [
+                            ["gifsicle", {interlaced: true}],
+                            ["jpegtran", {progressive: true}],
+                            ["optipng", {optimizationLevel: 5}],
+                            [
+                                "svgo",
+                                {
+                                    plugins: extendDefaultPlugins([
+                                        {
+                                            name: "removeViewBox",
+                                            active: false,
+                                        },
+                                        {
+                                            name: "addAttributesToSVGElement",
+                                            params: {
+                                                attributes: [{xmlns: "http://www.w3.org/2000/svg"}],
+                                            },
+                                        },
+                                    ]),
+                                },
+                            ],
+                        ],
+                    },
+                },
+            }),
         ]
     }
-
     return config
 }
 
-// переменная, которая в завис от режима дает красивое имя файлам в dist
-const filename = (ext) => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 
-// выносим повторяющийся код в Babel для js, для ts, для react
-const babelOptions = () => {
-    return {
-        {
-            presets: [
-                '@babel/preset-env',
-                '@babel/preset-typescript'
+const plugins = () => {
+    const base = [
+        new HTMLWebpackPlugin({
+            template: './index.html',
+            minify: {
+                collapseWhitespace: isProd
+            }
+        }),
+        new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/assets'),
+                    to: path.resolve(__dirname, 'app/assets')
+                }
             ]
-        }
-    }
+        }),
+        new MiniCssExtractPlugin({
+            filename: `./styles/${filename('css')}`
+        })
+    ]
+    return base
 }
-
-
 
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    entry: {
-        main: './index.js',
-        analytics: './analytics.js'
-    },
+    entry: './scripts/main.js',
     output: {
-        filename: filename('js'),
-        path: path.resolve(__dirname, 'dist')
+        filename: `./scripts/${filename('js')}`,
+        path: path.resolve(__dirname, 'app')
     },
     resolve: {
         extensions: ['.js', '.json', '.png'],
@@ -68,27 +102,8 @@ module.exports = {
         port: 4200,
         hot: isDev
     },
-    plugins: [
-        new HTMLWebpackPlugin({
-            template: './index.html',
-            minify: {
-                collapseWhitespace: isProd  //оптимизация, уменьшение кода
-            }
-        }),
-        new CleanWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
-                {
-                    from: path.resolve(__dirname, 'src/favicon.png'),
-                    to: path.resolve(__dirname, 'dist')
-                }
-            ]
-        }),
-        new MiniCssExtractPlugin({
-            filename: filename('css')
-        })
-
-    ],
+    devtool: isDev ? 'source-map' : false,
+    plugins: plugins(),
     module: {
         rules: [
             {
@@ -96,26 +111,30 @@ module.exports = {
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
-                    // 'less-loader',
                     'sass-loader'
                 ],
             },
             {
-                test: /\.(png|jpg|svg|gif)$/,
-                use: ['file-loader']
+                test: /\.(?:|jpe?g|png|gif|svg|ico)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: () => {
+                        return isDev ? 'img/[name][ext]' : 'img/[name].[contenthash][ext]';
+                    },
+                },
             },
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: babelOptions()
+                    options: {
+                        presets: [
+                            '@babel/preset-env'
+                        ]
+                    }
                 }
             },
-            // {
-            //     test: /\.(ttf|woff|woff2|eot)$/,
-            //     use: ['file-loader']
-            // },
         ]
     }
 }
