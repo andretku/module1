@@ -2,12 +2,14 @@
   "name": "module1",
   "version": "1.0.0",
   "description": "html, js, webpack",
+  "homepage": "https://andretku.github.io/module1/",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": "cross-env NODE_ENV=development webpack --mode=development --watch",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open",
+    "deploy": "gh-pages -d app"
   },
   "author": "Andrey Tkachuk",
   "license": "ISC",
@@ -38,6 +40,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "gh-pages": "^6.1.0",
     "normalize.css": "^8.0.1"
   }
 }
