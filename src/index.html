@@ -13,7 +13,7 @@
 <body>
     <header class="header">
         <div class="header__leftmenu">
-            <img src="./assets/img/burger.svg" alt="Burger menu">
+            <img id="burger" src="./assets/img/burger.svg" alt="Burger menu">
             <div class="header__divider"></div>
             <img src="./assets/img/group.svg" alt="CPS-Group">
         </div>
@@ -33,16 +33,16 @@
                 <path d="M256 102.4v819.2l512-409.6L256 102.4z" />
             </svg>
         </div>
-        <section id="menu" class="main__aside">
+        <section id="menu" class="aside">
             <div>
-                <div class="main__aside-header">
-                    <img src="./assets/img/burgerX.svg" alt="Burger menu">
+                <div class="aside__header">
+                    <img id="burgerX" src="./assets/img/burgerX.svg" alt="Burger menu">
                     <div>
-                        <img class="main__img_group" src="./assets/img/group.svg" alt="CPS-Group">
+                        <img class="aside__group" src="./assets/img/group.svg" alt="CPS-Group">
                     </div>
-                    <img class="main__img_search" src="./assets/img/search.svg" alt="Search">
+                    <img class="aside__search" src="./assets/img/search.svg" alt="Search">
                 </div>
-                <ul class="main__aside-menu">
+                <ul class="aside__menu">
                     <li>
                         <img src="./assets/img/highlight.svg" alt="highlight">
                         <a>Ремонт техники</a>
@@ -78,14 +78,14 @@
                 </ul>
             </div>
             <div>
-                <div class="main__aside-footer">
+                <div class="aside__footer">
                     <img src="./assets/img/call.svg" alt="Call">
                     <img src="./assets/img/chat.svg" alt="Chat">
                     <img src="./assets/img/profile.svg" alt="Profile">
                 </div>
-                <p class="main__aside-mail"><a href="mailto:mail@cps.com">mail@cps.com</a></p>
-                <p class="main__aside-phone"><a href="tel:8-800-890-8900">8 800 890 8900</a></p>
-                <ul class="main__aside-lang">
+                <p class="aside__mail"><a href="mailto:mail@cps.com">mail@cps.com</a></p>
+                <p class="aside__phone"><a href="tel:8-800-890-8900">8 800 890 8900</a></p>
+                <ul class="aside__lang">
                     <li><a href="#">RU</a></li>
                     <li><a href="#">EN</a></li>
                     <li><a href="#">CH</a></li>
@@ -100,7 +100,7 @@
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M4 4C4 1.79086 2.20914 0 0 0V40C2.20914 40 4 38.2091 4 36V4Z" fill="#41F6D7" />
                 </svg>
-                <h1 class="main__h1">Услуги и сервисы</h1>
+                <p class="main__h1">Услуги и сервисы</p>
             </div>
             <div class="main__rightmenu_disabled">
                 <div class="main__righticons">
@@ -166,25 +166,82 @@
             <img src="./assets/img/CPS-main.jpg" alt="CPS board">
         </article>
 
-
-        <section id="brandsMain" class="main__brands">
-            <p class="main__brands-title">
+        <!-- BRANDS -->
+        <section id="brandsMain" class="brands">
+            <p class="section__title">
                 Ремонт техники различных брендов</p>
-            <div id="brandsContainer" class="main__brands-container main__brands_hidden"></div>
-        </section>
 
-        <!-- Slider container mobile max768 -->
-        <section id="brandsMainMobile" class="main__brands">
-            <p class="main__brands-title">
-                Ремонт техники различных брендов</p>
+            <!-- min-width > 768 -->
+            <div id="brandsContainer" class="brands__container brands_hidden"></div>
+
+            <!-- mobile version -->
             <div class="swiper mySwiper">
-                <div class="swiper-wrapper"></div>
-                <div class="swiper-pagination" style="position: relative; bottom: -5px;"></div>
+                <div id="brandsSwiper" class="swiper-wrapper"></div>
+                <div class="swiper-pagination" style="position: relative; bottom: -4px;"></div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         </section>
 
-    </main>
-</body>
 
+        <!-- SERVICES -->
+        <section id="servicesMain" class="services">
+            <p class="section__title">
+                Ремонт различных видов техники</p>
+
+            <!-- min-width > 768 -->
+            <div id="servicesContainer" class="services__container services_hidden"></div>
+
+            <!-- mobile version -->
+            <div class="swiper mySwiper">
+                <div id="servicesSwiper" class="swiper-wrapper"></div>
+                <div class="swiper-pagination" style="position: relative; bottom: -4px;"></div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        </section>
+
+
+        <!-- OFFERS -->
+        <section id="offersMain" class="offers">
+            <p class="section__title">
+                Цены на услуги</p>
+
+            <!-- min-width > 768 -->
+            <div id="offersContainer" class="offers__container offers_hidden">
+                <div class="offers__header">
+                    <div>Ремонтные услуги</div>
+                    <div>Цена</div>
+                    <div>Срок</div>
+                    <div></div>
+                </div>
+            </div>
+
+            <!-- mobile version -->
+            <div class="swiper mySwiper">
+                <div id="offersSwiper" class="swiper-wrapper"></div>
+                <div class="swiper-pagination" style="position: relative; bottom: -4px;"></div>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        </section>
+
+
+        <article class="main__footer">
+            <p>
+                Все цены указаны с учетом НДС. Стоимость ремонта указана на единичную услугу. Для получения коммерческого предложения на постоянное обслуживание, оставьте заявку.
+            </p>
+            <a>
+                Получить коммерческое предложение
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewBox="0 0 24 28" fill="none">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.1625 17.6041C8.83819 17.9796 8.83819 18.536 9.1625 18.9115L9.29432 19.0641C9.69317 19.5258 10.409 19.5258 10.8078 19.0641L14.8372 14.3994C15.1615 14.0239 15.1615 13.4675 14.8372 13.092L10.8078 8.42728C10.409 7.96553 9.69317 7.96553 9.29432 8.42728L9.1625 8.57988C8.83819 8.95533 8.83819 9.5118 9.1625 9.88726L12.4954 13.7457L9.1625 17.6041Z" fill="#FF3E79"/>
+                    </svg>
+            </a>
+        </article>
+    </main>
+
+
+    <footer class="footer">
+        <p>© 2019 CPS<br>Разработано командой Apesong</p>
+        <p>Политика конфиденциальности</p>
+        <p>Информация, размещенная на данной странице, не является публичной офертой</p>
+    </footer>
+</body>
 </html>

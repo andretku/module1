@@ -29,6 +29,7 @@ html {
 body {
     min-width: 320px;
     max-width: 100vw;
+    min-height: 100vh;
     font-family: TTLakes, Arial, sans-serif;
     font-style: normal;
     font-size: 14px;
@@ -136,7 +137,7 @@ a:active {
 
 /* -------------- aside -------------------- */
 
-.main__aside {
+.aside {
     position: fixed;
     top: 0;
     left: 0;
@@ -152,25 +153,30 @@ a:active {
     z-index: 11;
 }
 
-.main__aside-header,
-.main__aside-footer {
+.aside__header,
+.aside__footer {
     display: flex;
+    align-items: center;
     width: 100%;
     gap: 16px;
 }
 
-.main__aside-header>img:hover,
-.main__aside-footer>img:hover {
+.aside__header>img {
+    object-fit: contain;
+}
+
+.aside__header>img:hover,
+.aside__footer>img:hover {
     cursor: pointer;
     filter: brightness(150%) opacity(80%);
     transition: all 0.2s ease-in;
 }
 
-.main__img_search {
+.aside__search {
     margin-left: auto;
 }
 
-.main__aside-menu {
+.aside__menu {
     font-family: TTLakes500;
     font-size: 16px;
     line-height: 24px;
@@ -179,11 +185,11 @@ a:active {
     list-style-type: none;
 }
 
-.main__aside-menu li:not(:last-child) {
+.aside__menu li:not(:last-child) {
     margin-bottom: 24px;
 }
 
-.main__aside-menu li {
+.aside__menu li {
     height: 32px;
     display: flex;
     align-items: center;
@@ -191,34 +197,34 @@ a:active {
     margin: 0 -24px 0 -24px;
 }
 
-.main__aside-menu li:hover {
+.aside__menu li:hover {
     cursor: pointer;
     color: var(--color-menu-font);
     transition: 0.3s;
 }
 
-.main__aside-menu li img {
+.aside__menu li img {
     opacity: 0;
 }
 
-.main__aside-menu li:hover img {
+.aside__menu li:hover img {
     opacity: 1;
     transition: 0.5s;
 }
 
-.main__aside-mail {
+.aside__mail {
     margin: 16px 0 12px;
     font-size: 16px;
     letter-spacing: -0.2px;
 }
 
-.main__aside-phone {
+.aside__phone {
     font-family: TTLakes700;
     font-size: 24px;
     letter-spacing: -0.6px;
 }
 
-.main__aside-lang {
+.aside__lang {
     list-style-type: none;
     display: flex;
     gap: 8px;
@@ -237,13 +243,14 @@ a:active {
 
 .main__title {
     display: flex;
+    align-items: center;
     gap: 12px;
 }
 
 .main__h1 {
     font-family: TTLakes700;
     font-size: 28px;
-    line-height: 1.43;
+    /* line-height: 1.43; */
     letter-spacing: -0.6px;
 }
 
@@ -314,11 +321,11 @@ a.navbar__item:visited {
 
 /* ---------------- Brands ---------------------- */
 
-.main__brands {
+.brands {
     padding: 32px;
 }
 
-.main__brands-title {
+.brands__title {
     font-family: TTLakes;
     font-size: 16px;
     text-transform: uppercase;
@@ -327,14 +334,14 @@ a.navbar__item:visited {
     padding-bottom: 32px;
 }
 
-.main__brands-container {
+.brands__container {
     display: flex;
     gap: 16px;
     padding-top: 32px;
     overflow: hidden;
 }
 
-.main__brands-content {
+.brands__content {
     display: flex;
     width: 240px;
     justify-content: space-between;
@@ -345,7 +352,7 @@ a.navbar__item:visited {
     padding-left: 16px;
 }
 
-.main__brands-icon {
+.brands__icon {
     margin: 16px;
     cursor: pointer;
     height: 40px;
@@ -403,7 +410,7 @@ a.navbar__item:visited {
 
 @media screen and (min-width: 768px) {
 
-    .main__aside {
+    .aside {
         width: 270px;
     }
 
@@ -467,20 +474,20 @@ a.navbar__item:visited {
         display: none;
     }
 
-    .main__brands {
+    .brands {
         padding: 24px 16px;
     }
 
-    .main__brands_hidden {
+    .brands_hidden {
         height: 190px;
         overflow-y: hidden;
     }
 
-    .main__brands-title {
+    .brands__title {
         padding: 8px 0;
     }
 
-    .main__brands-container {
+    .brands__container {
         padding-top: 24px;
         display: grid;
         grid-template-columns: repeat(3, minmax(200px, 240px));
@@ -488,7 +495,7 @@ a.navbar__item:visited {
         justify-content: center;
     }
 
-    .main__brands-content {
+    .brands__content {
         width: auto;
     }
 }
@@ -541,11 +548,11 @@ a.navbar__item:visited {
 
     /* --------------------- */
 
-    .main__brands {
+    .brands {
         padding: 0 32px 34px;
     }
 
-    .main__brands-container {
+    .brands__container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 16px 32px;

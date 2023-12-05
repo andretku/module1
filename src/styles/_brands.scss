@@ -1,0 +1,59 @@
+.brands {
+    padding: 16px;
+
+    &__container {
+        display: none;
+
+        @media screen and (min-width: $screen-md) {
+            padding-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(200px, 240px));
+            gap: 16px 24px;
+            justify-content: center;
+        }
+
+        @media screen and (min-width: $screen-lg) {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px 32px;
+        }
+    }
+
+    &__content {
+        display: flex;
+        width: 240px;
+        justify-content: space-between;
+        align-items: center;
+        background: $color-bg-header;
+        padding-left: 16px;
+
+        @media screen and (min-width: $screen-md) {
+            width: auto;
+            border-radius: 6px;
+            border: 1px solid $color-brand-border;
+            background: $color-bg-header;
+            padding-left: 16px;
+            max-width: 240px;
+        }
+    }
+
+    &__icon {
+        margin: 16px;
+        cursor: pointer;
+        height: 40px;
+    }
+
+    @media screen and (min-width: $screen-md) {
+        padding: 24px 16px;
+
+        &_hidden {
+            height: 190px;
+            overflow-y: hidden;
+        }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+        padding: 0 32px 34px;
+    }
+}
+
+

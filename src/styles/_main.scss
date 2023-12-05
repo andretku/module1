@@ -1,0 +1,154 @@
+.main {
+    background-color: $color-bg-main;
+    padding: 24px 0;
+    min-height: 100vh;
+    position: relative;
+
+    &__leftbutton {
+        display: none;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        @media screen and (min-width: $screen-md) {
+            gap: 20px;
+        }
+
+        @media screen and (min-width: $screen-lg) {
+            gap: 30px;
+        }
+    }
+
+    &__h1 {
+        font-family: TTLakes700;
+        font-size: 28px;
+        line-height: 1.43;
+        letter-spacing: -0.6px;
+    }
+
+    &__rightmenu_disabled {
+        display: none;
+
+        @media screen and (min-width: $screen-lg) {
+            display: flex;
+            gap: 32px;
+        }
+    }
+
+    &__righticons {
+        display: flex;
+        align-items: center;
+        font-family: TTLakes500;
+        font-size: 16px;
+        gap: 8px;
+
+        &:hover {
+            cursor: pointer;
+            font-weight: bolder;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        padding: 0 16px;
+
+        &>img {
+            width: 320px;
+            object-fit: contain;
+            align-self: center;
+            padding-top: 10px;
+
+            @media screen and (min-width: $screen-md) {
+                width: 50%;
+                object-fit: contain;
+                align-self: flex-start;
+                padding-top: 0;
+            }
+        }
+
+        @media screen and (min-width: $screen-md) {
+            display: flex;
+            flex-direction: row;
+            padding: 0 24px;
+        }
+
+        @media screen and (min-width: $screen-lg) {
+            padding: 0 34px;
+        }
+    }
+
+    &__text {
+        @media screen and (min-width: $screen-md) {
+            padding-right: 48px;
+        }
+    }
+
+    &__text>p:not(:first-child) {
+        padding-top: 24px;
+    }
+
+    &__text_hidden {
+        height: 80px;
+        overflow-y: hidden;
+    }
+
+    &__footer {
+        padding: 16px;
+        color: $color-font;
+
+
+        &>p {
+            font-family: TTLakes;
+            line-height: 20px;
+            letter-spacing: 0.2px;
+            padding-bottom: 10px;
+        }
+
+        &>a {
+            display: flex;
+            align-items: center;
+            font-family: TTLakes500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: $letter-spacing;
+        }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+        padding: 42px 0;
+
+        &__leftbutton {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 16px;
+            height: 100vh;
+            background: $color-bg-aside;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(14, 24, 80, 0.10);
+                box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.10);
+                transition: $transition;
+            }
+
+            &:hover svg {
+                fill: $color-menu-font;
+                transition: $transition;
+            }
+        }
+    }
+
+
+}

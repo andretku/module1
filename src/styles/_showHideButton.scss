@@ -1,0 +1,22 @@
+.showHideButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    color: $color-font;
+    font-family: TTLakes500;
+    font-size: 16px;
+    letter-spacing: $letter-spacing;
+    cursor: pointer;
+    background-color: inherit;
+    margin-top: 24px;
+
+    &:hover {
+        color: $color-menu-font;
+        transition: $transition;
+    }
+
+    &_rotate {
+        transform: rotate(180deg);
+    }
+}

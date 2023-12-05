@@ -1,0 +1,30 @@
+.footer {
+    color: $color-menu-font;
+    text-align: center;
+    font-family: TTLakes500;
+    line-height: 16px;
+    padding: 16px;
+
+    & p {
+        padding-top: 16px;
+    }
+
+    @media screen and (min-width: $screen-md) {
+        display: flex;
+        gap: 36px;
+        padding: 24px;
+
+        & p {
+            text-align: start;
+            flex: 1;
+        }
+
+        & p:last-child {
+            text-align: end;
+        }
+    }
+
+    @media screen and (min-width: $screen-lg) {
+        padding: 32px;
+    }
+}

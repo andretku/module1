@@ -1,0 +1,44 @@
+.navbar {
+    display: flex;
+    margin: 24px 16px;
+    gap: 16px;
+    overflow-x: scroll;
+    min-width: 300px;
+    list-style: none;
+
+
+    &::-webkit-scrollbar {
+        height: 1px;
+    }
+
+    &__item {
+        display: block;
+        font-family: TTLakes500;
+        color: $color-menu-font;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: $letter-spacing;
+        padding: 8px 16px;
+        border: 2px solid transparent;
+    }
+
+    a.navbar__item:hover {
+        border: 2px solid $color-menu-border;
+        border-radius: 6px;
+        background-color: #fff;
+    }
+
+    a.navbar__item:visited {
+        border: 2px solid $color-menu-border;
+        border-radius: 6px;
+    }
+
+    @media screen and (min-width: $screen-md) {
+        margin: 32px 24px;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+        margin: 32px 34px;
+    }
+}
+
