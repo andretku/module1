@@ -6,11 +6,46 @@
 
     &__leftbutton {
         display: none;
+
+        @media screen and (min-width: $screen-lg) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 16px;
+            height: 100vh;
+            background: $color-bg-aside;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(14, 24, 80, 0.10);
+                box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.10);
+                transition: $transition;
+            }
+
+            &:hover svg {
+                fill: $color-menu-font;
+                transition: $transition;
+            }
+        }
+
+        @media screen and (min-width: $screen-wd) {
+            display: none;
+        }
     }
 
     &__header {
         display: flex;
         justify-content: space-between;
+
+        @media screen and (min-width: $screen-lg) {
+            padding-right: 32px;
+        }
+
+        @media screen and (min-width: $screen-wd) {
+            padding-top: 42px;
+        }
     }
 
     &__title {
@@ -59,7 +94,7 @@
     &__content {
         display: flex;
         flex-direction: column;
-        padding: 0 16px;
+        padding: 0 16px 32px;
 
         &>img {
             width: 320px;
@@ -105,7 +140,6 @@
         padding: 16px;
         color: $color-font;
 
-
         &>p {
             font-family: TTLakes;
             line-height: 20px;
@@ -121,34 +155,20 @@
             line-height: 24px;
             letter-spacing: $letter-spacing;
         }
+
+        @media screen and (min-width: $screen-md) {
+            width: 500px;
+            padding: 0 32px;
+        }
+
     }
 
     @media screen and (min-width: $screen-lg) {
-        padding: 42px 0;
-
-        &__leftbutton {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 16px;
-            height: 100vh;
-            background: $color-bg-aside;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-
-            &:hover {
-                background-color: rgba(14, 24, 80, 0.10);
-                box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.10);
-                transition: $transition;
-            }
-
-            &:hover svg {
-                fill: $color-menu-font;
-                transition: $transition;
-            }
-        }
+        padding: 42px 0 16px;
     }
 
-
+    @media screen and (min-width: $screen-wd) {
+        display: flex;
+        padding: 0;
+    }
 }

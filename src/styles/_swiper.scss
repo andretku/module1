@@ -21,4 +21,9 @@
     height: 100%;
     width: 100%;
 
+    &>p {
+        height: 140px;
+        padding-top: 16px;
+    }
+
 }

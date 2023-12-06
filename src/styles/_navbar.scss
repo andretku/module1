@@ -40,5 +40,10 @@
     @media screen and (min-width: $screen-lg) {
         margin: 32px 34px;
     }
+
+    @media screen and (min-width: $screen-wd) {
+        overflow-x: none;
+        flex-wrap: wrap;
+    }
 }
 

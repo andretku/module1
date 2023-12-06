@@ -1,3 +1,5 @@
+import pointerdown from "./PointerDown"
+
 export default function leftMenu() {
     const menuContainer = document.querySelector('#menuContainer')
     const menu = document.querySelector('#menu')
@@ -5,25 +7,28 @@ export default function leftMenu() {
     const burgerX = document.querySelector('#burgerX')
 
 
-        // проверка на размер окна
-        if (window.innerWidth >= 1120) {
-            menuContainer.addEventListener('click', () => {
-                menu.style.display = 'flex'
-            })
-        } else {
-            burger.addEventListener('click', () => {
-                menu.style.display = 'flex'
-            })
-            burgerX.addEventListener('pointerup', function (e) {
-                menu.style.display = 'none'
-            })
-        }
+    // проверка на размер окна
 
-    document.addEventListener('pointerup', function (e) {
-        if (!menu.contains(e.target)) {
-            menu.style.display = 'none'
-        }
-    })
+    if (window.innerWidth >= 1440) {
+        menu.style.display = 'flex'
+        burgerX.style.display = 'none'
+    }
+
+    if (window.innerWidth >= 1120 && window.innerWidth < 1440) {
+        menuContainer.addEventListener('click', () => {
+            menu.style.display = 'flex'
+        })
+        pointerdown(menu, burgerX)
+    }
+
+    if (window.innerWidth < 1120) {
+        burger.addEventListener('click', () => {
+            menu.style.display = 'flex'
+        })
+        pointerdown(menu, burgerX)
+    }
+
+
 
 
 }

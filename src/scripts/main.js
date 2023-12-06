@@ -5,11 +5,14 @@ import '../styles/style.scss';
 import { brands } from "./data";
 import { services } from "./data";
 import { offers } from "./data";
+import order from "./order";
 
 
 leftMenu()
 sliders()
 showHideButton()
+order()
+
 
 
 function showHideButton() {
@@ -22,8 +25,11 @@ function showHideButton() {
 
 
     showHide('Читать далее', 'Скрыть', 'main__text_hidden', read_main, read_container)
-    showHide('Показать все', 'Скрыть', 'brands_hidden', brands_main, brands_container)
-    showHide('Показать все', 'Скрыть', 'services_hidden', services_main, services_container)
+
+    if (window.innerWidth >= 768) {
+        showHide('Показать все', 'Скрыть', 'brands_hidden', brands_main, brands_container)
+        showHide('Показать все', 'Скрыть', 'services_hidden', services_main, services_container)
+    }
 }
 
 
@@ -53,7 +59,3 @@ function sliders() {
 
     slider(offers_container, offers_swiper, offers, 'offers__content', 'offers__icon')
 }
-
-// if (window.innerWidth > 768) {
-//     main.append(buttonElem)
-// }

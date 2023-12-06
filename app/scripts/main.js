@@ -12,6 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ leftMenu)
 /* harmony export */ });
+/* harmony import */ var _PointerDown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PointerDown */ "./scripts/PointerDown.js");
+
 function leftMenu() {
   var menuContainer = document.querySelector('#menuContainer');
   var menu = document.querySelector('#menu');
@@ -19,21 +21,44 @@ function leftMenu() {
   var burgerX = document.querySelector('#burgerX');
 
   // проверка на размер окна
-  if (window.innerWidth >= 1120) {
+
+  if (window.innerWidth >= 1440) {
+    menu.style.display = 'flex';
+    burgerX.style.display = 'none';
+  }
+  if (window.innerWidth >= 1120 && window.innerWidth < 1440) {
     menuContainer.addEventListener('click', function () {
       menu.style.display = 'flex';
     });
-  } else {
+    (0,_PointerDown__WEBPACK_IMPORTED_MODULE_0__["default"])(menu, burgerX);
+  }
+  if (window.innerWidth < 1120) {
     burger.addEventListener('click', function () {
       menu.style.display = 'flex';
     });
-    burgerX.addEventListener('pointerup', function (e) {
-      menu.style.display = 'none';
-    });
+    (0,_PointerDown__WEBPACK_IMPORTED_MODULE_0__["default"])(menu, burgerX);
   }
+}
+
+/***/ }),
+
+/***/ "./scripts/PointerDown.js":
+/*!********************************!*\
+  !*** ./scripts/PointerDown.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ pointerdown)
+/* harmony export */ });
+function pointerdown(container, button) {
+  button.addEventListener('pointerup', function (e) {
+    container.style.display = 'none';
+  });
   document.addEventListener('pointerup', function (e) {
-    if (!menu.contains(e.target)) {
-      menu.style.display = 'none';
+    if (!container.contains(e.target)) {
+      container.style.display = 'none';
     }
   });
 }
@@ -220,6 +245,45 @@ var offers = [{
   price: 1000,
   term: '30-120 мин'
 }];
+
+/***/ }),
+
+/***/ "./scripts/order.js":
+/*!**************************!*\
+  !*** ./scripts/order.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ order)
+/* harmony export */ });
+/* harmony import */ var _PointerDown__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PointerDown */ "./scripts/PointerDown.js");
+
+function order() {
+  var call = document.getElementById('call');
+  var callClose = document.getElementById('callClose');
+  var client = document.getElementById('client');
+  var clientClose = document.getElementById('clientClose');
+  var callButtonHeader = document.getElementById('callButtonHeader');
+  var messageButtonHeader = document.getElementById('messageButtonHeader');
+  var callButtonAside = document.getElementById('callButtonAside');
+  var messageButtonAside = document.getElementById('messageButtonAside');
+  (0,_PointerDown__WEBPACK_IMPORTED_MODULE_0__["default"])(call, callClose);
+  (0,_PointerDown__WEBPACK_IMPORTED_MODULE_0__["default"])(client, clientClose);
+  callButtonHeader.addEventListener('click', function () {
+    call.style.display = 'block';
+  });
+  messageButtonHeader.addEventListener('click', function () {
+    client.style.display = 'block';
+  });
+  callButtonAside.addEventListener('click', function () {
+    call.style.display = 'block';
+  });
+  messageButtonAside.addEventListener('click', function () {
+    client.style.display = 'block';
+  });
+}
 
 /***/ }),
 
@@ -620,9 +684,36 @@ template {
   position: relative; }
   .main__leftbutton {
     display: none; }
+    @media screen and (min-width: 1120px) {
+      .main__leftbutton {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 16px;
+        height: 100vh;
+        background: #FFFFFF;
+        display: flex;
+        align-items: center;
+        cursor: pointer; }
+        .main__leftbutton:hover {
+          background-color: rgba(14, 24, 80, 0.1);
+          box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.1);
+          transition: 0.3s; }
+        .main__leftbutton:hover svg {
+          fill: #7E7E82;
+          transition: 0.3s; } }
+    @media screen and (min-width: 1440px) {
+      .main__leftbutton {
+        display: none; } }
   .main__header {
     display: flex;
     justify-content: space-between; }
+    @media screen and (min-width: 1120px) {
+      .main__header {
+        padding-right: 32px; } }
+    @media screen and (min-width: 1440px) {
+      .main__header {
+        padding-top: 42px; } }
   .main__title {
     display: flex;
     align-items: center;
@@ -656,7 +747,7 @@ template {
   .main__content {
     display: flex;
     flex-direction: column;
-    padding: 0 16px; }
+    padding: 0 16px 32px; }
     .main__content > img {
       width: 320px;
       object-fit: contain;
@@ -699,33 +790,24 @@ template {
       font-size: 16px;
       line-height: 24px;
       letter-spacing: -0.2px; }
+    @media screen and (min-width: 768px) {
+      .main__footer {
+        width: 500px;
+        padding: 0 32px; } }
   @media screen and (min-width: 1120px) {
     .main {
-      padding: 42px 0; }
-      .main__leftbutton {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 16px;
-        height: 100vh;
-        background: #FFFFFF;
-        display: flex;
-        align-items: center;
-        cursor: pointer; }
-        .main__leftbutton:hover {
-          background-color: rgba(14, 24, 80, 0.1);
-          box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.1);
-          transition: 0.3s; }
-        .main__leftbutton:hover svg {
-          fill: #7E7E82;
-          transition: 0.3s; } }
+      padding: 42px 0 16px; } }
+  @media screen and (min-width: 1440px) {
+    .main {
+      display: flex;
+      padding: 0; } }
 
 .aside {
   position: fixed;
   top: 0;
   left: 0;
   width: 320px;
-  height: 100vh;
+  height: 100%;
   background: #FFFFFF;
   padding: 18px 16px;
   box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.2), -2px 0px 4px 0px rgba(69, 79, 126, 0.02);
@@ -784,7 +866,15 @@ template {
     text-transform: uppercase; }
   @media screen and (min-width: 768px) {
     .aside {
-      padding: 18px 24px; } }
+      padding: 30px 24px 0; } }
+  @media screen and (min-width: 1440px) {
+    .aside {
+      box-shadow: none;
+      position: static;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; } }
 
 .navbar {
   display: flex;
@@ -817,6 +907,10 @@ template {
   @media screen and (min-width: 1120px) {
     .navbar {
       margin: 32px 34px; } }
+  @media screen and (min-width: 1440px) {
+    .navbar {
+      overflow-x: none;
+      flex-wrap: wrap; } }
 
 .brands {
   padding: 16px; }
@@ -930,6 +1024,8 @@ template {
       width: 100px; }
     .offers__header div:nth-child(3) {
       width: 120px; }
+    .offers__header div:nth-child(4) {
+      width: 115px; }
   .offers__content {
     display: flex;
     flex-direction: column;
@@ -942,6 +1038,7 @@ template {
         flex-direction: row;
         height: auto;
         justify-content: flex-start;
+        align-items: center;
         border-bottom: 1px solid #EAEAEA;
         padding: 24px 0;
         margin: 0 16px; }
@@ -1014,28 +1111,174 @@ template {
   max-width: 240px;
   height: 100%;
   width: 100%; }
+  .swiper-slide > p {
+    height: 140px;
+    padding-top: 16px; }
 
-.footer {
+.footer__aside {
+  display: none; }
+  @media screen and (min-width: 1440px) {
+    .footer__aside {
+      display: block;
+      width: 320px;
+      background-color: #FFFFFF; } }
+
+.footer__content {
   color: #7E7E82;
   text-align: center;
   font-family: TTLakes500;
   line-height: 16px;
-  padding: 16px; }
-  .footer p {
+  padding: 16px;
+  background-color: #F8F8F8; }
+  .footer__content p {
     padding-top: 16px; }
   @media screen and (min-width: 768px) {
-    .footer {
+    .footer__content {
       display: flex;
       gap: 36px;
       padding: 24px; }
-      .footer p {
+      .footer__content p {
         text-align: start;
         flex: 1; }
-      .footer p:last-child {
+      .footer__content p:last-child {
         text-align: end; } }
   @media screen and (min-width: 1120px) {
-    .footer {
+    .footer__content {
       padding: 32px; } }
+
+@media screen and (min-width: 1440px) {
+  .footer {
+    display: flex; } }
+
+.callOrder {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 15;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  padding: 24px 16px;
+  box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.2), -2px 0px 4px 0px rgba(69, 79, 126, 0.02); }
+  .callOrder > img {
+    padding-bottom: 40px; }
+    @media screen and (min-width: 1120px) {
+      .callOrder > img {
+        position: fixed;
+        top: 40px;
+        right: 472px; } }
+  .callOrder__title {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: #1B1C21;
+    font-family: TTLakes700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.6px; }
+    @media screen and (min-width: 1120px) {
+      .callOrder__title {
+        gap: 28px; } }
+    .callOrder__title svg {
+      margin-left: -16px; }
+      @media screen and (min-width: 1120px) {
+        .callOrder__title svg {
+          margin-left: -32px; } }
+  .callOrder__phoneField {
+    color: #B5B6BC;
+    font-family: TTLakes500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #EAEAEA;
+    margin-top: 24px; }
+  .callOrder__orderButton {
+    width: 140px;
+    margin-left: auto; }
+  .callOrder__info {
+    color: #7E7E82;
+    font-family: TTLakes500;
+    line-height: 16px;
+    padding: 16px 0; }
+    .callOrder__info span {
+      color: #FF3E79; }
+  @media screen and (min-width: 768px) {
+    .callOrder {
+      width: 320px; } }
+  @media screen and (min-width: 1120px) {
+    .callOrder {
+      width: 440px;
+      padding: 40px 32px; } }
+
+.clientOrder {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 15;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  padding: 24px 16px;
+  box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.2), -2px 0px 4px 0px rgba(69, 79, 126, 0.02); }
+  .clientOrder > img {
+    padding-bottom: 40px; }
+    @media screen and (min-width: 1120px) {
+      .clientOrder > img {
+        position: fixed;
+        top: 40px;
+        right: 472px; } }
+  .clientOrder__title {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: #1B1C21;
+    font-family: TTLakes700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.6px; }
+    @media screen and (min-width: 1120px) {
+      .clientOrder__title {
+        gap: 28px; } }
+    .clientOrder__title svg {
+      margin-left: -16px; }
+      @media screen and (min-width: 1120px) {
+        .clientOrder__title svg {
+          margin-left: -32px; } }
+  .clientOrder__input {
+    color: #B5B6BC;
+    font-family: TTLakes500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #EAEAEA;
+    margin-top: 24px; }
+  .clientOrder textarea {
+    resize: none; }
+  .clientOrder__orderButton {
+    width: 140px;
+    margin-left: auto; }
+  .clientOrder__info {
+    color: #7E7E82;
+    font-family: TTLakes500;
+    line-height: 16px;
+    padding: 16px 0; }
+    .clientOrder__info span {
+      color: #FF3E79; }
+  @media screen and (min-width: 768px) {
+    .clientOrder {
+      width: 320px; } }
+  @media screen and (min-width: 1120px) {
+    .clientOrder {
+      width: 440px;
+      padding: 40px 32px; } }
 
 html {
   box-sizing: border-box; }
@@ -1049,7 +1292,6 @@ html {
 
 body {
   min-width: 320px;
-  max-width: 100vw;
   font-family: TTLakes, Arial, sans-serif;
   font-style: normal;
   font-size: 14px;
@@ -1070,6 +1312,13 @@ svg:hover {
   filter: brightness(150%) opacity(80%);
   transition: all 0.3s ease-in; }
 
+/* remove arrows from inputs */
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; } }
+
 .container {
   width: 100%; }
   @media screen and (min-width: 768px) {
@@ -1078,6 +1327,11 @@ svg:hover {
   @media screen and (min-width: 1120px) {
     .container {
       width: 1100px; } }
+  @media screen and (min-width: 1440px) {
+    .container {
+      width: 1420px; }
+      .container_wide {
+        width: 1100px; } }
 
 .section__title {
   font-family: TTLakes;
@@ -1113,7 +1367,7 @@ svg:hover {
     cursor: pointer;
     opacity: 0.8;
     transition: 0.3s; }
-`, "",{"version":3,"sources":["webpack://./styles/TTLakes.scss","webpack://./../node_modules/normalize.css/normalize.css","webpack://./styles/style.scss","webpack://./styles/_header.scss","webpack://./styles/_variables.scss","webpack://./styles/_main.scss","webpack://./styles/_aside.scss","webpack://./styles/_navbar.scss","webpack://./styles/_brands.scss","webpack://./styles/_services.scss","webpack://./styles/_offers.scss","webpack://./styles/_showHideButton.scss","webpack://./styles/_swiper.scss","webpack://./styles/_footer.scss"],"names":[],"mappings":"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","sourcesContent":["@font-face {\r\n    font-family: TTLakes;\r\n    src: url(../fonts/TTLakes-Regular.woff) format('truetype');\r\n}\r\n\r\n@font-face {\r\n    font-family: TTLakes500;\r\n    src: url(../fonts/TTLakes-Medium.woff) format('truetype');\r\n}\r\n\r\n@font-face {\r\n    font-family: TTLakes700;\r\n    src: url(../fonts/TTLakes-Bold.woff) format('truetype');\r\n}","/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\n\n/* Document\n   ========================================================================== */\n\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in iOS.\n */\n\nhtml {\n  line-height: 1.15; /* 1 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers.\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Render the `main` element consistently in IE.\n */\n\nmain {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Remove the gray background on active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * 1. Remove the bottom border in Chrome 57-\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10.\n */\n\nimg {\n  border-style: none;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers.\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit; /* 1 */\n  font-size: 100%; /* 1 */\n  line-height: 1.15; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Correct the padding in Firefox.\n */\n\nfieldset {\n  padding: 0.35em 0.75em 0.625em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Remove the default vertical scrollbar in IE 10+.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10.\n * 2. Remove the padding in IE 10.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in Edge, IE 10+, and Firefox.\n */\n\ndetails {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Misc\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10+.\n */\n\ntemplate {\n  display: none;\n}\n\n/**\n * Add the correct display in IE 10.\n */\n\n[hidden] {\n  display: none;\n}\n","@import 'TTLakes.scss';\r\n@import '~normalize.css';\r\n@import 'variables';\r\n@import 'header';\r\n@import 'main';\r\n@import 'aside';\r\n@import 'navbar';\r\n@import 'brands';\r\n@import 'services';\r\n@import 'offers';\r\n@import 'showHideButton';\r\n@import 'swiper';\r\n@import 'footer';\r\n\r\n\r\nhtml {\r\n    box-sizing: border-box;\r\n}\r\n\r\n*,\r\n*:before,\r\n*:after {\r\n    box-sizing: inherit;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\nbody {\r\n    min-width: $screen-sm;\r\n    max-width: 100vw;\r\n    font-family: $font-family;\r\n    font-style: normal;\r\n    font-size: $font-size;\r\n    color: $color-font;\r\n\r\n    a {\r\n        text-decoration: none;\r\n        color: inherit;\r\n\r\n        &:hover {\r\n            cursor: pointer;\r\n            color: $color-menu-font;\r\n            transition: $transition;\r\n        }\r\n\r\n        &:active {\r\n            color: $color-menu-font;\r\n        }\r\n    }\r\n}\r\n\r\nimg[src$='.svg']:hover,\r\nsvg:hover {\r\n    cursor: pointer;\r\n    filter: brightness(150%) opacity(80%);\r\n    transition: all $transition ease-in;\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        margin: 0 auto;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        width: 1100px;\r\n    }\r\n}\r\n\r\n.section__title {\r\n    font-family: TTLakes;\r\n    font-size: 16px;\r\n    text-transform: uppercase;\r\n    letter-spacing: $letter-spacing;\r\n    color: $color-menu-font;\r\n    padding-bottom: 32px;\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 8px 0;\r\n    }\r\n}\r\n\r\n.swiper {\r\n    @media screen and (min-width: $screen-md) {\r\n        display: none;\r\n    }\r\n}\r\n\r\n.orderButton {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    border-radius: 16px;\r\n    background: $color-button;\r\n    color: $color-bg-header;\r\n    font-family: TTLakes700;\r\n    font-size: 12px;\r\n    line-height: 24px;\r\n    letter-spacing: $letter-spacing;\r\n    text-transform: uppercase;\r\n    padding: 4px 12px;\r\n    text-align: left;\r\n    border: none;\r\n\r\n    &:hover {\r\n        cursor: pointer;\r\n        opacity: 0.8;\r\n        transition: $transition;\r\n    }\r\n}",".header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    width: 100%;\r\n    padding: 18px 16px;\r\n    border-bottom: 1px solid $color-header-border;\r\n\r\n\r\n    &__leftmenu {\r\n        display: flex;\r\n        justify-content: flex-start;\r\n        align-items: center;\r\n    }\r\n\r\n    &__leftmenu>img {\r\n        padding-right: 16px;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            &:nth-child(3) {\r\n                padding-left: 16px;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__leftmenu &__divider {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: block;\r\n        }\r\n    }\r\n\r\n    &__rightmenu {\r\n        display: flex;\r\n        justify-content: flex-end;\r\n        align-items: center;\r\n    }\r\n\r\n    &__rightmenu>img:nth-child(2n+1) {\r\n        margin: 0 16px;\r\n    }\r\n\r\n    &__divider {\r\n        width: 2px;\r\n        height: 32px;\r\n        background-color: $color-bg-menu;\r\n        border-radius: 1px;\r\n        margin: 0 4px;\r\n    }\r\n\r\n    &__img_disabled {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: block;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 18px 24px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        display: none;\r\n    }\r\n\r\n\r\n}","$color-bg-main:#F8F8F8;\r\n$color-bg-aside: #FFFFFF;\r\n$color-bg-header: #FFFFFF;\r\n$color-bg-menu: #EAEAEA;\r\n$color-icon-main: #FF3E79;\r\n$color-font: #1B1C21;\r\n$color-menu-font: #7E7E82;\r\n$color-menu-start: #41F6D7;\r\n$color-menu-border: #B8FFEC;\r\n$color-header-border: #D9FFF5;\r\n$color-brand-border: #EAEAEA;\r\n$color-button: #FF3E79;\r\n\r\n$screen-sm:     320px;\r\n$screen-md:     768px;\r\n$screen-lg:     1120px;\r\n\r\n$font-size:     14px;\r\n$letter-spacing: -0.2px;\r\n$font-family:   TTLakes, Arial, sans-serif;\r\n\r\n$transition: 0.3s;\r\n",".main {\r\n    background-color: $color-bg-main;\r\n    padding: 24px 0;\r\n    min-height: 100vh;\r\n    position: relative;\r\n\r\n    &__leftbutton {\r\n        display: none;\r\n    }\r\n\r\n    &__header {\r\n        display: flex;\r\n        justify-content: space-between;\r\n    }\r\n\r\n    &__title {\r\n        display: flex;\r\n        align-items: center;\r\n        gap: 12px;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            gap: 20px;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            gap: 30px;\r\n        }\r\n    }\r\n\r\n    &__h1 {\r\n        font-family: TTLakes700;\r\n        font-size: 28px;\r\n        line-height: 1.43;\r\n        letter-spacing: -0.6px;\r\n    }\r\n\r\n    &__rightmenu_disabled {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            display: flex;\r\n            gap: 32px;\r\n        }\r\n    }\r\n\r\n    &__righticons {\r\n        display: flex;\r\n        align-items: center;\r\n        font-family: TTLakes500;\r\n        font-size: 16px;\r\n        gap: 8px;\r\n\r\n        &:hover {\r\n            cursor: pointer;\r\n            font-weight: bolder;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        flex-direction: column;\r\n        padding: 0 16px;\r\n\r\n        &>img {\r\n            width: 320px;\r\n            object-fit: contain;\r\n            align-self: center;\r\n            padding-top: 10px;\r\n\r\n            @media screen and (min-width: $screen-md) {\r\n                width: 50%;\r\n                object-fit: contain;\r\n                align-self: flex-start;\r\n                padding-top: 0;\r\n            }\r\n        }\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: flex;\r\n            flex-direction: row;\r\n            padding: 0 24px;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            padding: 0 34px;\r\n        }\r\n    }\r\n\r\n    &__text {\r\n        @media screen and (min-width: $screen-md) {\r\n            padding-right: 48px;\r\n        }\r\n    }\r\n\r\n    &__text>p:not(:first-child) {\r\n        padding-top: 24px;\r\n    }\r\n\r\n    &__text_hidden {\r\n        height: 80px;\r\n        overflow-y: hidden;\r\n    }\r\n\r\n    &__footer {\r\n        padding: 16px;\r\n        color: $color-font;\r\n\r\n\r\n        &>p {\r\n            font-family: TTLakes;\r\n            line-height: 20px;\r\n            letter-spacing: 0.2px;\r\n            padding-bottom: 10px;\r\n        }\r\n\r\n        &>a {\r\n            display: flex;\r\n            align-items: center;\r\n            font-family: TTLakes500;\r\n            font-size: 16px;\r\n            line-height: 24px;\r\n            letter-spacing: $letter-spacing;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 42px 0;\r\n\r\n        &__leftbutton {\r\n            position: fixed;\r\n            top: 0;\r\n            left: 0;\r\n            width: 16px;\r\n            height: 100vh;\r\n            background: $color-bg-aside;\r\n            display: flex;\r\n            align-items: center;\r\n            cursor: pointer;\r\n\r\n            &:hover {\r\n                background-color: rgba(14, 24, 80, 0.10);\r\n                box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.10);\r\n                transition: $transition;\r\n            }\r\n\r\n            &:hover svg {\r\n                fill: $color-menu-font;\r\n                transition: $transition;\r\n            }\r\n        }\r\n    }\r\n\r\n\r\n}",".aside {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 320px;\r\n    height: 100vh;\r\n    background: $color-bg-aside;\r\n    padding: 18px 16px;\r\n    box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.20), -2px 0px 4px 0px rgba(69, 79, 126, 0.02);\r\n    flex-direction: column;\r\n    justify-content: space-between;\r\n    display: none;\r\n    z-index: 11;\r\n\r\n    &__header,\r\n    &__footer {\r\n        display: flex;\r\n        align-items: center;\r\n        width: 100%;\r\n        gap: 16px;\r\n    }\r\n\r\n    &__header>img {\r\n        object-fit: contain;\r\n    }\r\n\r\n    &__search {\r\n        margin-left: auto;\r\n    }\r\n\r\n    &__menu {\r\n        font-family: TTLakes500;\r\n        font-size: 16px;\r\n        line-height: 24px;\r\n        letter-spacing: $letter-spacing;\r\n        padding: 50px 0;\r\n        list-style-type: none;\r\n\r\n        & li {\r\n            height: 32px;\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 20px;\r\n            margin: 0 -24px 0 -24px;\r\n\r\n            &:not(:last-child) {\r\n                margin-bottom: 24px;\r\n            }\r\n\r\n            &:hover {\r\n                cursor: pointer;\r\n                color: var(--color-menu-font);\r\n                transition: $transition;\r\n            }\r\n\r\n            & img {\r\n                opacity: 0;\r\n            }\r\n\r\n            &:hover img {\r\n                opacity: 1;\r\n                transition: $transition;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__mail {\r\n        margin: 16px 0 12px;\r\n        font-size: 16px;\r\n        letter-spacing: $letter-spacing;\r\n    }\r\n\r\n    &__phone {\r\n        font-family: TTLakes700;\r\n        font-size: 24px;\r\n        letter-spacing: -0.6px;\r\n    }\r\n\r\n    &__lang {\r\n        list-style-type: none;\r\n        display: flex;\r\n        gap: 8px;\r\n        margin-top: 40px;\r\n        font-size: 16px;\r\n        letter-spacing: $letter-spacing;\r\n        text-transform: uppercase;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 18px 24px;\r\n    }\r\n\r\n}",".navbar {\r\n    display: flex;\r\n    margin: 24px 16px;\r\n    gap: 16px;\r\n    overflow-x: scroll;\r\n    min-width: 300px;\r\n    list-style: none;\r\n\r\n\r\n    &::-webkit-scrollbar {\r\n        height: 1px;\r\n    }\r\n\r\n    &__item {\r\n        display: block;\r\n        font-family: TTLakes500;\r\n        color: $color-menu-font;\r\n        font-size: 16px;\r\n        line-height: 1.5;\r\n        letter-spacing: $letter-spacing;\r\n        padding: 8px 16px;\r\n        border: 2px solid transparent;\r\n    }\r\n\r\n    a.navbar__item:hover {\r\n        border: 2px solid $color-menu-border;\r\n        border-radius: 6px;\r\n        background-color: #fff;\r\n    }\r\n\r\n    a.navbar__item:visited {\r\n        border: 2px solid $color-menu-border;\r\n        border-radius: 6px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        margin: 32px 24px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        margin: 32px 34px;\r\n    }\r\n}\r\n\r\n",".brands {\r\n    padding: 16px;\r\n\r\n    &__container {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            padding-top: 24px;\r\n            display: grid;\r\n            grid-template-columns: repeat(3, minmax(200px, 240px));\r\n            gap: 16px 24px;\r\n            justify-content: center;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            grid-template-columns: repeat(4, 1fr);\r\n            gap: 16px 32px;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        width: 240px;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        background: $color-bg-header;\r\n        padding-left: 16px;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            width: auto;\r\n            border-radius: 6px;\r\n            border: 1px solid $color-brand-border;\r\n            background: $color-bg-header;\r\n            padding-left: 16px;\r\n            max-width: 240px;\r\n        }\r\n    }\r\n\r\n    &__icon {\r\n        margin: 16px;\r\n        cursor: pointer;\r\n        height: 40px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 24px 16px;\r\n\r\n        &_hidden {\r\n            height: 190px;\r\n            overflow-y: hidden;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 0 32px 34px;\r\n    }\r\n}\r\n\r\n\r\n",".services {\r\n    padding: 16px;\r\n\r\n    &__container {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            padding-top: 24px;\r\n            display: grid;\r\n            grid-template-columns: repeat(3, minmax(200px, 240px));\r\n            gap: 16px 24px;\r\n            justify-content: center;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            grid-template-columns: repeat(4, 1fr);\r\n            gap: 16px 32px;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        height: 120px;\r\n        padding-top: 16px;\r\n        justify-content: space-between;\r\n        background: $color-bg-header;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            width: auto;\r\n            border-radius: 6px;\r\n            border: 1px solid $color-brand-border;\r\n            background: $color-bg-header;\r\n            padding-left: 16px;\r\n            max-width: 240px;\r\n        }\r\n    }\r\n\r\n    &__icon {\r\n        margin: 16px;\r\n        cursor: pointer;\r\n        height: 40px;\r\n        align-self: flex-end;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 24px 16px;\r\n\r\n        &_hidden {\r\n            height: 150px;\r\n            overflow-y: hidden;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 0 32px 34px;\r\n    }\r\n}\r\n\r\n\r\n",".offers {\r\n    padding: 16px;\r\n\r\n    &__container {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: flex;\r\n            flex-direction: column;\r\n            background: $color-bg-header;\r\n            border-radius: 6px;\r\n            justify-content: center;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {}\r\n    }\r\n\r\n    &__header {\r\n        display: flex;\r\n        color: $color-menu-font;\r\n        font-family: TTLakes500;\r\n        padding: 46px 16px 16px;\r\n        background: $color-bg-main;\r\n\r\n        & div:first-child {\r\n            flex: 1;\r\n            min-width: 350px;\r\n        }\r\n\r\n        & div:nth-child(2) {\r\n            width: 100px;\r\n        }\r\n        \r\n        & div:nth-child(3) {\r\n            width: 120px;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        flex-direction: column;\r\n        justify-content: space-between;\r\n        height: 160px;\r\n        padding: 16px 16px 16px 0;\r\n        background: $color-bg-header;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            flex-direction: row;\r\n            height: auto;\r\n            justify-content: flex-start;\r\n            border-bottom: 1px solid $color-bg-menu;\r\n            padding: 24px 0;\r\n            margin: 0 16px;\r\n\r\n            & div:first-child {\r\n                flex: 1;\r\n                min-width: 350px;\r\n            }\r\n\r\n            & div:nth-child(2) {\r\n                width: 100px;\r\n            }\r\n\r\n            & div:nth-child(3) {\r\n                width: 120px;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__title {\r\n        color: $color-menu-font;\r\n        font-family: TTLakes500;\r\n        font-size: 14px;\r\n        line-height: 16px;\r\n    }\r\n\r\n    &__info {\r\n        color: $color-font;\r\n        font-family: TTLakes;\r\n        font-size: 14px;\r\n        line-height: 18px;\r\n        letter-spacing: 0.2px;\r\n        min-width: 100px;\r\n\r\n        &:not(:last-child) {\r\n            padding-bottom: 16px;\r\n        }\r\n    }\r\n\r\n    &__order {\r\n        display: flex;\r\n        justify-content: space-between;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 24px 16px;\r\n\r\n        // &_hidden {\r\n        //     height: 190px;\r\n        //     overflow-y: hidden;\r\n        // }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 0 32px 34px;\r\n    }\r\n}",".showHideButton {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 8px;\r\n    border: none;\r\n    color: $color-font;\r\n    font-family: TTLakes500;\r\n    font-size: 16px;\r\n    letter-spacing: $letter-spacing;\r\n    cursor: pointer;\r\n    background-color: inherit;\r\n    margin-top: 24px;\r\n\r\n    &:hover {\r\n        color: $color-menu-font;\r\n        transition: $transition;\r\n    }\r\n\r\n    &_rotate {\r\n        transform: rotate(180deg);\r\n    }\r\n}",".swiper {\r\n    width: 100%;\r\n    height: 100%;\r\n    min-height: 100px;\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        display: none;\r\n    }\r\n}\r\n\r\n.swiper-slide {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    border-radius: 6px;\r\n    border: 1px solid $color-brand-border;\r\n    background: $color-bg-header;\r\n    padding-left: 16px;\r\n    min-width: 200px;\r\n    max-width: 240px;\r\n    height: 100%;\r\n    width: 100%;\r\n\r\n}",".footer {\r\n    color: $color-menu-font;\r\n    text-align: center;\r\n    font-family: TTLakes500;\r\n    line-height: 16px;\r\n    padding: 16px;\r\n\r\n    & p {\r\n        padding-top: 16px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        display: flex;\r\n        gap: 36px;\r\n        padding: 24px;\r\n\r\n        & p {\r\n            text-align: start;\r\n            flex: 1;\r\n        }\r\n\r\n        & p:last-child {\r\n            text-align: end;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 32px;\r\n    }\r\n}"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./styles/TTLakes.scss","webpack://./../node_modules/normalize.css/normalize.css","webpack://./styles/style.scss","webpack://./styles/_header.scss","webpack://./styles/_variables.scss","webpack://./styles/_main.scss","webpack://./styles/_aside.scss","webpack://./styles/_navbar.scss","webpack://./styles/_brands.scss","webpack://./styles/_services.scss","webpack://./styles/_offers.scss","webpack://./styles/_showHideButton.scss","webpack://./styles/_swiper.scss","webpack://./styles/_footer.scss","webpack://./styles/_callOrder.scss","webpack://./styles/_clientOrder.scss"],"names":[],"mappings":"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","sourcesContent":["@font-face {\r\n    font-family: TTLakes;\r\n    src: url(../fonts/TTLakes-Regular.woff) format('truetype');\r\n}\r\n\r\n@font-face {\r\n    font-family: TTLakes500;\r\n    src: url(../fonts/TTLakes-Medium.woff) format('truetype');\r\n}\r\n\r\n@font-face {\r\n    font-family: TTLakes700;\r\n    src: url(../fonts/TTLakes-Bold.woff) format('truetype');\r\n}","/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */\n\n/* Document\n   ========================================================================== */\n\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in iOS.\n */\n\nhtml {\n  line-height: 1.15; /* 1 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/* Sections\n   ========================================================================== */\n\n/**\n * Remove the margin in all browsers.\n */\n\nbody {\n  margin: 0;\n}\n\n/**\n * Render the `main` element consistently in IE.\n */\n\nmain {\n  display: block;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\npre {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * Remove the gray background on active links in IE 10.\n */\n\na {\n  background-color: transparent;\n}\n\n/**\n * 1. Remove the bottom border in Chrome 57-\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10.\n */\n\nimg {\n  border-style: none;\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change the font styles in all browsers.\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: inherit; /* 1 */\n  font-size: 100%; /* 1 */\n  line-height: 1.15; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\n[type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Correct the padding in Firefox.\n */\n\nfieldset {\n  padding: 0.35em 0.75em 0.625em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Remove the default vertical scrollbar in IE 10+.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10.\n * 2. Remove the padding in IE 10.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding in Chrome and Safari on macOS.\n */\n\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/* Interactive\n   ========================================================================== */\n\n/*\n * Add the correct display in Edge, IE 10+, and Firefox.\n */\n\ndetails {\n  display: block;\n}\n\n/*\n * Add the correct display in all browsers.\n */\n\nsummary {\n  display: list-item;\n}\n\n/* Misc\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 10+.\n */\n\ntemplate {\n  display: none;\n}\n\n/**\n * Add the correct display in IE 10.\n */\n\n[hidden] {\n  display: none;\n}\n","@import 'TTLakes.scss';\r\n@import '~normalize.css';\r\n@import 'variables';\r\n@import 'header';\r\n@import 'main';\r\n@import 'aside';\r\n@import 'navbar';\r\n@import 'brands';\r\n@import 'services';\r\n@import 'offers';\r\n@import 'showHideButton';\r\n@import 'swiper';\r\n@import 'footer';\r\n@import 'callOrder';\r\n@import 'clientOrder';\r\n\r\n\r\n\r\nhtml {\r\n    box-sizing: border-box;\r\n}\r\n\r\n*,\r\n*:before,\r\n*:after {\r\n    box-sizing: inherit;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\nbody {\r\n    min-width: $screen-sm;\r\n    font-family: $font-family;\r\n    font-style: normal;\r\n    font-size: $font-size;\r\n    color: $color-font;\r\n\r\n    a {\r\n        text-decoration: none;\r\n        color: inherit;\r\n\r\n        &:hover {\r\n            cursor: pointer;\r\n            color: $color-menu-font;\r\n            transition: $transition;\r\n        }\r\n\r\n        &:active {\r\n            color: $color-menu-font;\r\n        }\r\n    }\r\n}\r\n\r\nimg[src$='.svg']:hover,\r\nsvg:hover {\r\n    cursor: pointer;\r\n    filter: brightness(150%) opacity(80%);\r\n    transition: all $transition ease-in;\r\n}\r\n\r\n/* remove arrows from inputs */\r\n@layer base {\r\n    input[type=\"number\"]::-webkit-inner-spin-button,\r\n    input[type=\"number\"]::-webkit-outer-spin-button {\r\n        -webkit-appearance: none;\r\n        margin: 0;\r\n    }\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        margin: 0 auto;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        width: 1100px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-wd) {\r\n        width: 1420px;\r\n\r\n        &_wide {\r\n            width: 1100px;\r\n        }\r\n    }\r\n}\r\n\r\n.section__title {\r\n    font-family: TTLakes;\r\n    font-size: 16px;\r\n    text-transform: uppercase;\r\n    letter-spacing: $letter-spacing;\r\n    color: $color-menu-font;\r\n    padding-bottom: 32px;\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 8px 0;\r\n    }\r\n}\r\n\r\n.swiper {\r\n    @media screen and (min-width: $screen-md) {\r\n        display: none;\r\n    }\r\n}\r\n\r\n.orderButton {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    border-radius: 16px;\r\n    background: $color-button;\r\n    color: $color-bg-header;\r\n    font-family: TTLakes700;\r\n    font-size: 12px;\r\n    line-height: 24px;\r\n    letter-spacing: $letter-spacing;\r\n    text-transform: uppercase;\r\n    padding: 4px 12px;\r\n    text-align: left;\r\n    border: none;\r\n\r\n    &:hover {\r\n        cursor: pointer;\r\n        opacity: 0.8;\r\n        transition: $transition;\r\n    }\r\n}",".header {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    width: 100%;\r\n    padding: 18px 16px;\r\n    border-bottom: 1px solid $color-header-border;\r\n\r\n\r\n    &__leftmenu {\r\n        display: flex;\r\n        justify-content: flex-start;\r\n        align-items: center;\r\n    }\r\n\r\n    &__leftmenu>img {\r\n        padding-right: 16px;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            &:nth-child(3) {\r\n                padding-left: 16px;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__leftmenu &__divider {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: block;\r\n        }\r\n    }\r\n\r\n    &__rightmenu {\r\n        display: flex;\r\n        justify-content: flex-end;\r\n        align-items: center;\r\n    }\r\n\r\n    &__rightmenu>img:nth-child(2n+1) {\r\n        margin: 0 16px;\r\n    }\r\n\r\n    &__divider {\r\n        width: 2px;\r\n        height: 32px;\r\n        background-color: $color-bg-menu;\r\n        border-radius: 1px;\r\n        margin: 0 4px;\r\n    }\r\n\r\n    &__img_disabled {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: block;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 18px 24px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        display: none;\r\n    }\r\n\r\n\r\n}","$color-bg-main:#F8F8F8;\r\n$color-bg-aside: #FFFFFF;\r\n$color-bg-header: #FFFFFF;\r\n$color-bg-menu: #EAEAEA;\r\n$color-icon-main: #FF3E79;\r\n$color-font: #1B1C21;\r\n$color-menu-font: #7E7E82;\r\n$color-menu-start: #41F6D7;\r\n$color-menu-border: #B8FFEC;\r\n$color-header-border: #D9FFF5;\r\n$color-brand-border: #EAEAEA;\r\n$color-button: #FF3E79;\r\n$color-formfield: #B5B6BC;\r\n\r\n$screen-sm:     320px;\r\n$screen-md:     768px;\r\n$screen-lg:     1120px;\r\n$screen-wd:     1440px;\r\n\r\n$font-size:     14px;\r\n$letter-spacing: -0.2px;\r\n$font-family:   TTLakes, Arial, sans-serif;\r\n\r\n$transition: 0.3s;\r\n",".main {\r\n    background-color: $color-bg-main;\r\n    padding: 24px 0;\r\n    min-height: 100vh;\r\n    position: relative;\r\n\r\n    &__leftbutton {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            position: fixed;\r\n            top: 0;\r\n            left: 0;\r\n            width: 16px;\r\n            height: 100vh;\r\n            background: $color-bg-aside;\r\n            display: flex;\r\n            align-items: center;\r\n            cursor: pointer;\r\n\r\n            &:hover {\r\n                background-color: rgba(14, 24, 80, 0.10);\r\n                box-shadow: 3px 0px 5px 0px rgba(14, 24, 80, 0.10);\r\n                transition: $transition;\r\n            }\r\n\r\n            &:hover svg {\r\n                fill: $color-menu-font;\r\n                transition: $transition;\r\n            }\r\n        }\r\n\r\n        @media screen and (min-width: $screen-wd) {\r\n            display: none;\r\n        }\r\n    }\r\n\r\n    &__header {\r\n        display: flex;\r\n        justify-content: space-between;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            padding-right: 32px;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-wd) {\r\n            padding-top: 42px;\r\n        }\r\n    }\r\n\r\n    &__title {\r\n        display: flex;\r\n        align-items: center;\r\n        gap: 12px;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            gap: 20px;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            gap: 30px;\r\n        }\r\n    }\r\n\r\n    &__h1 {\r\n        font-family: TTLakes700;\r\n        font-size: 28px;\r\n        line-height: 1.43;\r\n        letter-spacing: -0.6px;\r\n    }\r\n\r\n    &__rightmenu_disabled {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            display: flex;\r\n            gap: 32px;\r\n        }\r\n    }\r\n\r\n    &__righticons {\r\n        display: flex;\r\n        align-items: center;\r\n        font-family: TTLakes500;\r\n        font-size: 16px;\r\n        gap: 8px;\r\n\r\n        &:hover {\r\n            cursor: pointer;\r\n            font-weight: bolder;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        flex-direction: column;\r\n        padding: 0 16px 32px;\r\n\r\n        &>img {\r\n            width: 320px;\r\n            object-fit: contain;\r\n            align-self: center;\r\n            padding-top: 10px;\r\n\r\n            @media screen and (min-width: $screen-md) {\r\n                width: 50%;\r\n                object-fit: contain;\r\n                align-self: flex-start;\r\n                padding-top: 0;\r\n            }\r\n        }\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: flex;\r\n            flex-direction: row;\r\n            padding: 0 24px;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            padding: 0 34px;\r\n        }\r\n    }\r\n\r\n    &__text {\r\n        @media screen and (min-width: $screen-md) {\r\n            padding-right: 48px;\r\n        }\r\n    }\r\n\r\n    &__text>p:not(:first-child) {\r\n        padding-top: 24px;\r\n    }\r\n\r\n    &__text_hidden {\r\n        height: 80px;\r\n        overflow-y: hidden;\r\n    }\r\n\r\n    &__footer {\r\n        padding: 16px;\r\n        color: $color-font;\r\n\r\n        &>p {\r\n            font-family: TTLakes;\r\n            line-height: 20px;\r\n            letter-spacing: 0.2px;\r\n            padding-bottom: 10px;\r\n        }\r\n\r\n        &>a {\r\n            display: flex;\r\n            align-items: center;\r\n            font-family: TTLakes500;\r\n            font-size: 16px;\r\n            line-height: 24px;\r\n            letter-spacing: $letter-spacing;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            width: 500px;\r\n            padding: 0 32px;\r\n        }\r\n\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 42px 0 16px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-wd) {\r\n        display: flex;\r\n        padding: 0;\r\n    }\r\n}",".aside {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 320px;\r\n    height: 100%;\r\n    background: $color-bg-aside;\r\n    padding: 18px 16px;\r\n    box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.20), -2px 0px 4px 0px rgba(69, 79, 126, 0.02);\r\n    flex-direction: column;\r\n    justify-content: space-between;\r\n    display: none;\r\n    z-index: 11;\r\n\r\n    &__header,\r\n    &__footer {\r\n        display: flex;\r\n        align-items: center;\r\n        width: 100%;\r\n        gap: 16px;\r\n    }\r\n\r\n    &__header>img {\r\n        object-fit: contain;\r\n    }\r\n\r\n    &__search {\r\n        margin-left: auto;\r\n    }\r\n\r\n    &__menu {\r\n        font-family: TTLakes500;\r\n        font-size: 16px;\r\n        line-height: 24px;\r\n        letter-spacing: $letter-spacing;\r\n        padding: 50px 0;\r\n        list-style-type: none;\r\n\r\n        & li {\r\n            height: 32px;\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 20px;\r\n            margin: 0 -24px 0 -24px;\r\n\r\n            &:not(:last-child) {\r\n                margin-bottom: 24px;\r\n            }\r\n\r\n            &:hover {\r\n                cursor: pointer;\r\n                color: var(--color-menu-font);\r\n                transition: $transition;\r\n            }\r\n\r\n            & img {\r\n                opacity: 0;\r\n            }\r\n\r\n            &:hover img {\r\n                opacity: 1;\r\n                transition: $transition;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__mail {\r\n        margin: 16px 0 12px;\r\n        font-size: 16px;\r\n        letter-spacing: $letter-spacing;\r\n    }\r\n\r\n    &__phone {\r\n        font-family: TTLakes700;\r\n        font-size: 24px;\r\n        letter-spacing: -0.6px;\r\n    }\r\n\r\n    &__lang {\r\n        list-style-type: none;\r\n        display: flex;\r\n        gap: 8px;\r\n        margin-top: 40px;\r\n        font-size: 16px;\r\n        letter-spacing: $letter-spacing;\r\n        text-transform: uppercase;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 30px 24px 0;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-wd) {\r\n        box-shadow: none;\r\n        position: static;\r\n        height: auto;\r\n        display: flex;\r\n        flex-direction: column;\r\n        justify-content: flex-start;\r\n    }\r\n}",".navbar {\r\n    display: flex;\r\n    margin: 24px 16px;\r\n    gap: 16px;\r\n    overflow-x: scroll;\r\n    min-width: 300px;\r\n    list-style: none;\r\n\r\n\r\n    &::-webkit-scrollbar {\r\n        height: 1px;\r\n    }\r\n\r\n    &__item {\r\n        display: block;\r\n        font-family: TTLakes500;\r\n        color: $color-menu-font;\r\n        font-size: 16px;\r\n        line-height: 1.5;\r\n        letter-spacing: $letter-spacing;\r\n        padding: 8px 16px;\r\n        border: 2px solid transparent;\r\n    }\r\n\r\n    a.navbar__item:hover {\r\n        border: 2px solid $color-menu-border;\r\n        border-radius: 6px;\r\n        background-color: #fff;\r\n    }\r\n\r\n    a.navbar__item:visited {\r\n        border: 2px solid $color-menu-border;\r\n        border-radius: 6px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        margin: 32px 24px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        margin: 32px 34px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-wd) {\r\n        overflow-x: none;\r\n        flex-wrap: wrap;\r\n    }\r\n}\r\n\r\n",".brands {\r\n    padding: 16px;\r\n\r\n    &__container {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            padding-top: 24px;\r\n            display: grid;\r\n            grid-template-columns: repeat(3, minmax(200px, 240px));\r\n            gap: 16px 24px;\r\n            justify-content: center;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            grid-template-columns: repeat(4, 1fr);\r\n            gap: 16px 32px;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        width: 240px;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        background: $color-bg-header;\r\n        padding-left: 16px;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            width: auto;\r\n            border-radius: 6px;\r\n            border: 1px solid $color-brand-border;\r\n            background: $color-bg-header;\r\n            padding-left: 16px;\r\n            max-width: 240px;\r\n        }\r\n    }\r\n\r\n    &__icon {\r\n        margin: 16px;\r\n        cursor: pointer;\r\n        height: 40px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 24px 16px;\r\n\r\n        &_hidden {\r\n            height: 190px;\r\n            overflow-y: hidden;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 0 32px 34px;\r\n    }\r\n}\r\n\r\n\r\n",".services {\r\n    padding: 16px;\r\n\r\n    &__container {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            padding-top: 24px;\r\n            display: grid;\r\n            grid-template-columns: repeat(3, minmax(200px, 240px));\r\n            gap: 16px 24px;\r\n            justify-content: center;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            grid-template-columns: repeat(4, 1fr);\r\n            gap: 16px 32px;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        height: 120px;\r\n        padding-top: 16px;\r\n        justify-content: space-between;\r\n        background: $color-bg-header;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            width: auto;\r\n            border-radius: 6px;\r\n            border: 1px solid $color-brand-border;\r\n            background: $color-bg-header;\r\n            padding-left: 16px;\r\n            max-width: 240px;\r\n        }\r\n    }\r\n\r\n    &__icon {\r\n        margin: 16px;\r\n        cursor: pointer;\r\n        height: 40px;\r\n        align-self: flex-end;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 24px 16px;\r\n\r\n        &_hidden {\r\n            height: 150px;\r\n            overflow-y: hidden;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 0 32px 34px;\r\n    }\r\n}\r\n\r\n\r\n",".offers {\r\n    padding: 16px;\r\n\r\n    &__container {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: flex;\r\n            flex-direction: column;\r\n            background: $color-bg-header;\r\n            border-radius: 6px;\r\n            justify-content: center;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {}\r\n    }\r\n\r\n    &__header {\r\n        display: flex;\r\n        color: $color-menu-font;\r\n        font-family: TTLakes500;\r\n        padding: 46px 16px 16px;\r\n        background: $color-bg-main;\r\n\r\n        & div:first-child {\r\n            flex: 1;\r\n            min-width: 350px;\r\n        }\r\n\r\n        & div:nth-child(2) {\r\n            width: 100px;\r\n        }\r\n\r\n        & div:nth-child(3) {\r\n            width: 120px;\r\n        }\r\n\r\n        & div:nth-child(4) {\r\n            width: 115px;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        display: flex;\r\n        flex-direction: column;\r\n        justify-content: space-between;\r\n        height: 160px;\r\n        padding: 16px 16px 16px 0;\r\n        background: $color-bg-header;\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            flex-direction: row;\r\n            height: auto;\r\n            justify-content: flex-start;\r\n            align-items: center;\r\n            border-bottom: 1px solid $color-bg-menu;\r\n            padding: 24px 0;\r\n            margin: 0 16px;\r\n\r\n            & div:first-child {\r\n                flex: 1;\r\n                min-width: 350px;\r\n            }\r\n\r\n            & div:nth-child(2) {\r\n                width: 100px;\r\n            }\r\n\r\n            & div:nth-child(3) {\r\n                width: 120px;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__title {\r\n        color: $color-menu-font;\r\n        font-family: TTLakes500;\r\n        font-size: 14px;\r\n        line-height: 16px;\r\n    }\r\n\r\n    &__info {\r\n        color: $color-font;\r\n        font-family: TTLakes;\r\n        font-size: 14px;\r\n        line-height: 18px;\r\n        letter-spacing: 0.2px;\r\n        min-width: 100px;\r\n\r\n        &:not(:last-child) {\r\n            padding-bottom: 16px;\r\n        }\r\n    }\r\n\r\n    &__order {\r\n        display: flex;\r\n        justify-content: space-between;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        padding: 24px 16px;\r\n\r\n        // &_hidden {\r\n        //     height: 190px;\r\n        //     overflow-y: hidden;\r\n        // }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        padding: 0 32px 34px;\r\n    }\r\n}",".showHideButton {\r\n    display: flex;\r\n    align-items: center;\r\n    gap: 8px;\r\n    border: none;\r\n    color: $color-font;\r\n    font-family: TTLakes500;\r\n    font-size: 16px;\r\n    letter-spacing: $letter-spacing;\r\n    cursor: pointer;\r\n    background-color: inherit;\r\n    margin-top: 24px;\r\n\r\n    &:hover {\r\n        color: $color-menu-font;\r\n        transition: $transition;\r\n    }\r\n\r\n    &_rotate {\r\n        transform: rotate(180deg);\r\n    }\r\n}",".swiper {\r\n    width: 100%;\r\n    height: 100%;\r\n    min-height: 100px;\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        display: none;\r\n    }\r\n}\r\n\r\n.swiper-slide {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    border-radius: 6px;\r\n    border: 1px solid $color-brand-border;\r\n    background: $color-bg-header;\r\n    padding-left: 16px;\r\n    min-width: 200px;\r\n    max-width: 240px;\r\n    height: 100%;\r\n    width: 100%;\r\n\r\n    &>p {\r\n        height: 140px;\r\n        padding-top: 16px;\r\n    }\r\n\r\n}",".footer {\r\n\r\n    &__aside {\r\n        display: none;\r\n\r\n        @media screen and (min-width: $screen-wd) {\r\n            display: block;\r\n            width: 320px;\r\n            background-color: $color-bg-header;\r\n        }\r\n    }\r\n\r\n    &__content {\r\n        color: $color-menu-font;\r\n        text-align: center;\r\n        font-family: TTLakes500;\r\n        line-height: 16px;\r\n        padding: 16px;\r\n        background-color: $color-bg-main;\r\n\r\n        & p {\r\n            padding-top: 16px;\r\n        }\r\n\r\n        @media screen and (min-width: $screen-md) {\r\n            display: flex;\r\n            gap: 36px;\r\n            padding: 24px;\r\n\r\n            & p {\r\n                text-align: start;\r\n                flex: 1;\r\n            }\r\n\r\n            & p:last-child {\r\n                text-align: end;\r\n            }\r\n        }\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            padding: 32px;\r\n        }\r\n\r\n    }\r\n\r\n    @media screen and (min-width: $screen-wd) {\r\n        display: flex;\r\n    }\r\n}",".callOrder {\r\n    display: none;\r\n    position: fixed;\r\n    right: 0;\r\n    top: 0;\r\n    z-index: 15;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: $color-bg-aside;\r\n    padding: 24px 16px;\r\n    box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.20), -2px 0px 4px 0px rgba(69, 79, 126, 0.02);\r\n\r\n    &>img {\r\n        padding-bottom: 40px;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            position: fixed;\r\n            top: 40px;\r\n            right: 472px;\r\n        }\r\n    }\r\n\r\n    &__title {\r\n        display: flex;\r\n        gap: 12px;\r\n        align-items: center;\r\n        color: $color-font;\r\n        font-family: TTLakes700;\r\n        font-size: 24px;\r\n        line-height: 32px;\r\n        letter-spacing: -0.6px;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            gap: 28px;\r\n        }\r\n\r\n        & svg {\r\n            margin-left: -16px;\r\n\r\n            @media screen and (min-width: $screen-lg) {\r\n                margin-left: -32px;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__phoneField {\r\n        color: $color-formfield;\r\n        font-family: TTLakes500;\r\n        font-size: 16px;\r\n        line-height: 24px;\r\n        letter-spacing: $letter-spacing;\r\n        width: 100%;\r\n        padding: 12px 16px;\r\n        border-radius: 8px;\r\n        border: 1px solid $color-bg-menu;\r\n        margin-top: 24px;\r\n    }\r\n\r\n    &__orderButton {\r\n        width: 140px;\r\n        margin-left: auto;\r\n    }\r\n\r\n\r\n    &__info {\r\n        color: $color-menu-font;\r\n        font-family: TTLakes500;\r\n        line-height: 16px;\r\n        padding: 16px 0;\r\n\r\n        & span {\r\n            color: $color-button;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        width: 320px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        width: 440px;\r\n        padding: 40px 32px;\r\n    }\r\n}",".clientOrder {\r\n    display: none;\r\n    position: fixed;\r\n    right: 0;\r\n    top: 0;\r\n    z-index: 15;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: $color-bg-aside;\r\n    padding: 24px 16px;\r\n    box-shadow: 16px 0px 52px 0px rgba(14, 24, 80, 0.20), -2px 0px 4px 0px rgba(69, 79, 126, 0.02);\r\n\r\n    &>img {\r\n        padding-bottom: 40px;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            position: fixed;\r\n            top: 40px;\r\n            right: 472px;\r\n        }\r\n    }\r\n\r\n    &__title {\r\n        display: flex;\r\n        gap: 12px;\r\n        align-items: center;\r\n        color: $color-font;\r\n        font-family: TTLakes700;\r\n        font-size: 24px;\r\n        line-height: 32px;\r\n        letter-spacing: -0.6px;\r\n\r\n        @media screen and (min-width: $screen-lg) {\r\n            gap: 28px;\r\n        }\r\n\r\n        & svg {\r\n            margin-left: -16px;\r\n\r\n            @media screen and (min-width: $screen-lg) {\r\n                margin-left: -32px;\r\n            }\r\n        }\r\n    }\r\n\r\n    &__input {\r\n        color: $color-formfield;\r\n        font-family: TTLakes500;\r\n        font-size: 16px;\r\n        line-height: 24px;\r\n        letter-spacing: $letter-spacing;\r\n        width: 100%;\r\n        padding: 12px 16px;\r\n        border-radius: 8px;\r\n        border: 1px solid $color-bg-menu;\r\n        margin-top: 24px;\r\n    }\r\n\r\n    textarea {\r\n        resize: none;\r\n    }\r\n\r\n    &__orderButton {\r\n        width: 140px;\r\n        margin-left: auto;\r\n    }\r\n\r\n\r\n    &__info {\r\n        color: $color-menu-font;\r\n        font-family: TTLakes500;\r\n        line-height: 16px;\r\n        padding: 16px 0;\r\n\r\n        & span {\r\n            color: $color-button;\r\n        }\r\n    }\r\n\r\n    @media screen and (min-width: $screen-md) {\r\n        width: 320px;\r\n    }\r\n\r\n    @media screen and (min-width: $screen-lg) {\r\n        width: 440px;\r\n        padding: 40px 32px;\r\n    }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1774,6 +2028,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LeftMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LeftMenu */ "./scripts/LeftMenu.js");
 /* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/style.scss */ "./styles/style.scss");
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./data */ "./scripts/data.js");
+/* harmony import */ var _order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./order */ "./scripts/order.js");
+
 
 
 
@@ -1784,6 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,_LeftMenu__WEBPACK_IMPORTED_MODULE_2__["default"])();
 sliders();
 showHideButton();
+(0,_order__WEBPACK_IMPORTED_MODULE_5__["default"])();
 function showHideButton() {
   var read_main = document.getElementById('readMain');
   var read_container = document.getElementById('readContainer');
@@ -1792,8 +2049,10 @@ function showHideButton() {
   var services_main = document.getElementById('servicesMain');
   var services_container = document.getElementById('servicesContainer');
   (0,_ShowHide__WEBPACK_IMPORTED_MODULE_0__["default"])('Читать далее', 'Скрыть', 'main__text_hidden', read_main, read_container);
-  (0,_ShowHide__WEBPACK_IMPORTED_MODULE_0__["default"])('Показать все', 'Скрыть', 'brands_hidden', brands_main, brands_container);
-  (0,_ShowHide__WEBPACK_IMPORTED_MODULE_0__["default"])('Показать все', 'Скрыть', 'services_hidden', services_main, services_container);
+  if (window.innerWidth >= 768) {
+    (0,_ShowHide__WEBPACK_IMPORTED_MODULE_0__["default"])('Показать все', 'Скрыть', 'brands_hidden', brands_main, brands_container);
+    (0,_ShowHide__WEBPACK_IMPORTED_MODULE_0__["default"])('Показать все', 'Скрыть', 'services_hidden', services_main, services_container);
+  }
 }
 
 // * Sliders -- only mobile version
@@ -1816,10 +2075,6 @@ function sliders() {
   (0,_Slider__WEBPACK_IMPORTED_MODULE_1__["default"])(services_container, services_swiper, _data__WEBPACK_IMPORTED_MODULE_4__.services, 'services__content', 'services__icon');
   (0,_Slider__WEBPACK_IMPORTED_MODULE_1__["default"])(offers_container, offers_swiper, _data__WEBPACK_IMPORTED_MODULE_4__.offers, 'offers__content', 'offers__icon');
 }
-
-// if (window.innerWidth > 768) {
-//     main.append(buttonElem)
-// }
 })();
 
 /******/ })()
