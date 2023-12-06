@@ -1,5 +1,6 @@
 export default function pointerdown(container, button) {
     button.addEventListener('pointerup', function (e) {
+        console.log('click');
         container.style.display = 'none'
     })
 
