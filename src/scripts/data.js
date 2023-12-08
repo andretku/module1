@@ -1,3 +1,5 @@
+// Модуль со всеми данными для слайдеров
+
 export const brands = [
     'lenovo', 'samsung', 'apple', 'viewsonic', 'bosch', 'hp', 'acer', 'sony', 'lenovo', 'samsung', 'apple'
 ];

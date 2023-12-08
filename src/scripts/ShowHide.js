@@ -1,4 +1,4 @@
-// функция для кнопки разворач / сворачивания
+// * вторая функция для кнопки разворач / сворачивания непомещающегося текста
 
 export default function showHide(showMore, showLess, hide, main, container) {
     let buttonElem = document.createElement('button')

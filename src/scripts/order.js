@@ -1,5 +1,7 @@
 import pointerdown from "./PointerDown"
 
+// * модуль вызова правых меню по кнопке Call или Message
+
 export default function order() {
     const call = document.getElementById('call')
     const callClose = document.getElementById('callClose')

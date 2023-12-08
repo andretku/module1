@@ -1,3 +1,8 @@
+// * вторая, основная функция для трех слайдеров. Полностью заполнение контентом с помощью data.js и рисование разметки.
+// * определение, какой из трех слайдеров заполняется, сделал через if, хотя можно было и через switch case
+// * также подкл / откл внешний слайдер при смене ширины экрана на 768+. Через resize работакет не корректно, потому что при начальной загрузке страницы у нас пустая страница, и только при изменении размера она заполняется
+
+
 export default function slider(container, swiperWrapper, content, cssClass, cssIconClass) {
 
     for (let i = 0; i < content.length; i++) {
@@ -8,6 +13,7 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
             divElem.classList.add(cssClass)
         }
 
+        //  * 1 слайдер
         if (swiperWrapper.id === 'brandsSwiper') {
             let imgElem = document.createElement('img')
             imgElem.setAttribute('src', `./assets/brands/${content[i]}.png`)
@@ -17,6 +23,7 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
             divElem.append(imgElem, hrefElem)
         }
 
+        // * 2 слайдер
         if (swiperWrapper.id === 'servicesSwiper') {
             let pElem = document.createElement('p')
             pElem.innerText = content[i]
@@ -25,6 +32,7 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
             divElem.append(pElem, hrefElem)
         }
 
+        //  * 3 слайдер
         if (swiperWrapper.id === 'offersSwiper') {
             if (window.innerWidth < 768) {
                 let divItem = document.createElement('div')
@@ -98,8 +106,6 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
             } else {
                 swiperWrapper.append(divElem)
             }
-
-
 
 
         // иконка красной кнопки

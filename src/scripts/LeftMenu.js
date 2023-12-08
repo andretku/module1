@@ -1,3 +1,5 @@
+// модуль для вызова/закрытия левого меню по нажатию на кнопки
+
 import pointerdown from "./PointerDown"
 
 export default function leftMenu() {
@@ -6,19 +8,10 @@ export default function leftMenu() {
     const burger = document.querySelector('#burger')
     const burgerX = document.querySelector('#burgerX')
 
-
-
-    // if (window.innerWidth >= 1440) {
-    //     menu.style.display = 'flex'
-    //     burgerX.style.display = 'none'
-    // }
-
-
         menuContainer.addEventListener('pointerup', (e) => {
             e.stopPropagation()
             menu.style.display = 'flex'
         })
-
 
         burger.addEventListener('pointerup', (e) => {
             e.stopPropagation()
@@ -26,8 +19,4 @@ export default function leftMenu() {
         })
 
         pointerdown(menu, burgerX)
-
-
-
-
 }

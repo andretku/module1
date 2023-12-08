@@ -7,6 +7,7 @@ import { services } from "./data";
 import { offers } from "./data";
 import order from "./order";
 
+// * основной модуль. Здесь можно еще дальше вынести нижние функции в отдельные файлы, но пока оставил так
 
 leftMenu()
 sliders()
@@ -14,7 +15,7 @@ showHideButton()
 order()
 
 
-
+// * функция кнопки сворачивания и разворачивания непомещающегося в контейнер текста или слайдов. Вызывает вторую функцию
 function showHideButton() {
     const read_main = document.getElementById('readMain')
     const read_container = document.getElementById('readContainer')
@@ -22,7 +23,6 @@ function showHideButton() {
     const brands_container = document.getElementById('brandsContainer')
     const services_main = document.getElementById('servicesMain')
     const services_container = document.getElementById('servicesContainer')
-
 
     showHide('Читать далее', 'Скрыть', 'main__text_hidden', read_main, read_container)
 
@@ -33,7 +33,8 @@ function showHideButton() {
 }
 
 
-// * Sliders -- only mobile version
+// * Sliders -- слайдеры работают только при width < 768. Вызывают вторую функцию slider.
+// * используется сторонний код, взятый с swiperjs.com
 function sliders() {
     const brands_container = document.getElementById('brandsContainer')
     const brands_swiper = document.getElementById('brandsSwiper')

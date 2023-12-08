@@ -28,11 +28,15 @@
     </header>
 
     <main class="main container">
+
+        <!-- Левое меню. Левая кнопка на всю ширину активна только от 1120 до 1440 -->
         <div id="menuContainer" class="main__leftbutton">
             <svg viewBox="0 0 1024 1024" version="1.1">
                 <path d="M256 102.4v819.2l512-409.6L256 102.4z" />
             </svg>
         </div>
+
+        <!-- Само меню. Исчезает при width < 1440 -->
         <section id="menu" class="aside">
             <div>
                 <div class="aside__header">
@@ -94,6 +98,7 @@
         </section>
 
 
+        <!-- Правое меню - форма заявки на звонок -->
         <section id="call" class="callOrder">
             <img id="callClose" src="./assets/img/burgerX.svg" alt="Call close">
             <div class="callOrder__title">
@@ -117,6 +122,7 @@
         </section>
 
 
+        <!-- Правое меню - форма для контактов и сообщения -->
         <section id="client" class="clientOrder">
             <img id="clientClose" src="./assets/img/burgerX.svg" alt="Client close">
             <div class="clientOrder__title">
@@ -140,7 +146,7 @@
             </form>
         </section>
 
-
+        <!-- Главная секция -->
         <section class="container_wide">
             <div class="main__header">
                 <div class="main__title">
@@ -162,6 +168,8 @@
                 </div>
             </div>
 
+
+            <!-- Центральная навигация -->
             <nav>
                 <ul class="navbar">
                     <li>
@@ -197,6 +205,8 @@
                 </ul>
             </nav>
 
+
+            <!-- Текст и картинка -->
             <article class="main__content">
                 <div id="readMain">
                     <div id="readContainer" class="main__text main__text_hidden">
@@ -215,6 +225,8 @@
                 <img src="./assets/img/CPS-main.jpg" alt="CPS board">
             </article>
 
+
+            <!-- 1 Слайдер с брендами -->
             <!-- BRANDS -->
             <section id="brandsMain" class="brands">
                 <p class="section__title">
@@ -232,6 +244,7 @@
             </section>
 
 
+            <!-- 2 слайдер с сервисами -->
             <!-- SERVICES -->
             <section id="servicesMain" class="services">
                 <p class="section__title">
@@ -249,6 +262,7 @@
             </section>
 
 
+            <!-- 3 слайдер с предложением и ценами -->
             <!-- OFFERS -->
             <section id="offersMain" class="offers">
                 <p class="section__title">
@@ -273,6 +287,7 @@
             </section>
 
 
+            <!-- Текст внизу -->
             <article class="main__footer">
                 <p>
                     Все цены указаны с учетом НДС. Стоимость ремонта указана на единичную услугу. Для получения
