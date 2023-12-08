@@ -21,6 +21,8 @@
         font-family: TTLakes500;
         padding: 46px 16px 16px;
         background: $color-bg-main;
+        width: 100%;
+        justify-content: space-between;
 
         & div:first-child {
             flex: 1;
@@ -45,8 +47,10 @@
         flex-direction: column;
         justify-content: space-between;
         height: 160px;
+        width: 100%;
         padding: 16px 16px 16px 0;
         background: $color-bg-header;
+        border-radius: 6px;
 
         @media screen and (min-width: $screen-md) {
             flex-direction: row;
@@ -54,8 +58,8 @@
             justify-content: flex-start;
             align-items: center;
             border-bottom: 1px solid $color-bg-menu;
-            padding: 24px 0;
-            margin: 0 16px;
+            padding: 24px 16px;
+            // margin: 0 16px;
 
             & div:first-child {
                 flex: 1;
@@ -85,7 +89,7 @@
         font-size: 14px;
         line-height: 18px;
         letter-spacing: 0.2px;
-        min-width: 100px;
+        min-width: 90px;
 
         &:not(:last-child) {
             padding-bottom: 16px;
@@ -99,11 +103,6 @@
 
     @media screen and (min-width: $screen-md) {
         padding: 24px 16px;
-
-        // &_hidden {
-        //     height: 190px;
-        //     overflow-y: hidden;
-        // }
     }
 
     @media screen and (min-width: $screen-lg) {

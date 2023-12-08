@@ -7,26 +7,25 @@ export default function leftMenu() {
     const burgerX = document.querySelector('#burgerX')
 
 
-    // проверка на размер окна
 
-    if (window.innerWidth >= 1440) {
-        menu.style.display = 'flex'
-        burgerX.style.display = 'none'
-    }
+    // if (window.innerWidth >= 1440) {
+    //     menu.style.display = 'flex'
+    //     burgerX.style.display = 'none'
+    // }
 
-    if (window.innerWidth >= 1120 && window.innerWidth < 1440) {
-        menuContainer.addEventListener('click', () => {
+
+        menuContainer.addEventListener('pointerup', (e) => {
+            e.stopPropagation()
             menu.style.display = 'flex'
         })
-        pointerdown(menu, burgerX)
-    }
 
-    if (window.innerWidth < 1120) {
-        burger.addEventListener('click', () => {
+
+        burger.addEventListener('pointerup', (e) => {
+            e.stopPropagation()
             menu.style.display = 'flex'
         })
+
         pointerdown(menu, burgerX)
-    }
 
 
 

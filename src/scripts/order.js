@@ -13,19 +13,23 @@ export default function order() {
     pointerdown(call, callClose)
     pointerdown(client, clientClose)
 
-    callButtonHeader.addEventListener('click', () => {
+    callButtonHeader.addEventListener('pointerup', (e) => {
+        e.stopPropagation()
         call.style.display = 'block'
     })
 
-    messageButtonHeader.addEventListener('click', () => {
+    messageButtonHeader.addEventListener('pointerup', (e) => {
+        e.stopPropagation()
         client.style.display = 'block'
     })
 
-    callButtonAside.addEventListener('click', () => {
+    callButtonAside.addEventListener('pointerup', (e) => {
+        e.stopPropagation()
         call.style.display = 'block'
     })
 
-    messageButtonAside.addEventListener('click', () => {
+    messageButtonAside.addEventListener('pointerup', (e) => {
+        e.stopPropagation()
         client.style.display = 'block'
     })
 

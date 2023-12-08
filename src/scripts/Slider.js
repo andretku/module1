@@ -88,19 +88,19 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
                 })
 
                 divElem.append(div1Item, div2Item, div3Item, buttonElem)
-
-
-
             }
         }
 
 
-        // проверка при загрузке окна
-        if (window.innerWidth > 768) {
-            container.append(divElem)
-        } else {
-            swiperWrapper.append(divElem)
-        }
+
+            if (window.innerWidth >= 768) {
+                container.append(divElem)
+            } else {
+                swiperWrapper.append(divElem)
+            }
+
+
+
 
         // иконка красной кнопки
         function icon(iconClass) {
