@@ -21,6 +21,7 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
 
             let hrefElem = icon(cssIconClass)
             divElem.append(imgElem, hrefElem)
+
         }
 
         // * 2 слайдер
@@ -119,3 +120,4 @@ export default function slider(container, swiperWrapper, content, cssClass, cssI
         }
     }
 }
+
